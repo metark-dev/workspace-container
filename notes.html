@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注意事项 — Workspace Container 分屏助手</title>
+  <meta name="description" content="分屏助手的系统要求、权限说明和常见问题解答。">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 159, 10, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-subtitle {
+      max-width: 520px;
+      margin: 16px auto 0;
+    }
+
+    .notes-section {
+      padding: 80px 24px;
+    }
+
+    .notes-section:nth-child(even) {
+      background: var(--color-bg-secondary);
+    }
+
+    .notes-section-header {
+      margin-bottom: 48px;
+    }
+
+    .notes-section-label {
+      font-size: 14px;
+      color: var(--color-accent);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    /* 系统要求 */
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .req-card {
+      padding: 32px;
+      text-align: center;
+    }
+
+    .req-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .req-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .req-value {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+    }
+
+    /* 权限说明 */
+    .permission-card {
+      padding: 40px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .permission-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 159, 10, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .permission-body h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .permission-body p {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .permission-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .permission-steps li {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .permission-steps li::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* 警告框 */
+    .warning-box {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(255, 159, 10, 0.06);
+      border: 1px solid rgba(255, 159, 10, 0.15);
+      border-radius: var(--radius-md);
+      margin-top: 24px;
+    }
+
+    .warning-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .warning-content {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .warning-content strong {
+      color: var(--color-text);
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      padding: 28px 32px;
+      cursor: default;
+    }
+
+    .faq-question {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .faq-q-mark {
+      color: var(--color-accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      padding-left: 28px;
+    }
+
+    /* 已知限制 */
+    .limit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .limit-item {
+      display: flex;
+      gap: 20px;
+      padding: 24px 32px;
+      align-items: flex-start;
+    }
+
+    .limit-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 55, 95, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #ff375f;
+      flex-shrink: 0;
+    }
+
+    .limit-body h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .limit-body p {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .req-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .permission-card {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">⊞</span>
+      分屏助手
+    </a>
+    <button class="nav-toggle" aria-label="菜单">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="guide.html">操作方法</a></li>
+      <li><a href="notes.html">注意事项</a></li>
+      <li><a href="privacy.html">隐私政策</a></li>
+      <li><a href="index.html#pricing" class="nav-cta">获取分屏助手</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 页面标题 -->
+<section class="page-hero">
+  <h1 class="headline-lg fade-in">注意事项</h1>
+  <p class="body-lg page-hero-subtitle fade-in stagger-1">
+    使用前请了解以下信息
+  </p>
+</section>
+
+<!-- 系统要求 -->
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">系统要求</div>
+      <h2 class="headline-md">运行环境</h2>
+    </div>
+
+    <div class="req-grid">
+      <div class="card req-card fade-in">
+        <div class="req-icon">💻</div>
+        <div class="req-title">操作系统</div>
+        <div class="req-value">macOS 13.0 Ventura 或更高版本</div>
+      </div>
+
+      <div class="card req-card fade-in stagger-1">
+        <div class="req-icon">🖥</div>
+        <div class="req-title">支持芯片</div>
+        <div class="req-value">Apple Silicon (M1/M2/M3/M4) 及 Intel</div>
+      </div>
+
+      <div class="card req-card fade-in stagger-2">
+        <div class="req-icon">📐</div>
+        <div class="req-title">屏幕</div>
+        <div class="req-value">建议分辨率 1440×900 或更高</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 权限说明 -->
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">权限</div>
+      <h2 class="headline-md">辅助功能权限</h2>
+    </div>
+
+    <div class="card permission-card fade-in">
+      <div class="permission-icon">🔐</div>
+      <div class="permission-body">
+        <h3>为什么需要辅助功能权限？</h3>
+        <p>分屏助手使用 macOS 的 Accessibility API（AXUIElement）来控制其他应用窗口的位置和大小。这是 macOS 上唯一合法的窗口管理方式，所有窗口管理类应用（如 Magnet、Rectangle）都需要此权限。</p>
+        <p>分屏助手仅使用此权限来移动和调整窗口大小，不会读取窗口内容，不会记录任何操作，不会访问网络。</p>
+
+        <h3 style="margin-top: 24px;">如何授权</h3>
+        <ol class="permission-steps">
+          <li data-step="1.">打开「系统设置」</li>
+          <li data-step="2.">进入「隐私与安全性」→「辅助功能」</li>
+          <li data-step="3.">在列表中找到 Workspace Container，打开开关</li>
+          <li data-step="4.">如果列表中没有 Workspace Container，点击「+」手动添加</li>
+          <li data-step="5.">授权后重新启动分屏助手</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="warning-box fade-in">
+      <span class="warning-icon">⚠️</span>
+      <div class="warning-content">
+        <strong>授权后必须重启应用。</strong>macOS 的辅助功能权限在应用运行期间授权后不会立即生效，需要退出并重新打开分屏助手。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 已知限制 -->
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">限制</div>
+      <h2 class="headline-md">已知限制</h2>
+    </div>
+
+    <div class="limit-list">
+      <div class="card limit-item fade-in">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>无法嵌入窗口</h3>
+          <p>macOS 不允许将其他应用的窗口嵌入到另一个应用中。分屏助手通过控制窗口位置和大小来模拟容器效果，而非真正的窗口嵌入。</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-1">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>部分应用可能不兼容</h3>
+          <p>少数应用可能限制了外部对其窗口的控制。如果某个应用的窗口无法被绑定或移动，这通常是该应用自身的限制。</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-2">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>全屏应用</h3>
+          <p>处于 macOS 原生全屏模式的应用窗口无法被分屏助手控制。请先退出全屏模式再进行绑定。</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-3">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>多显示器</h3>
+          <p>当前版本主要针对单显示器优化。多显示器环境下，容器窗口和绑定窗口应在同一屏幕上使用。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">FAQ</div>
+      <h2 class="headline-md">常见问题</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="card faq-item fade-in">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          绑定窗口后没有反应？
+        </div>
+        <div class="faq-answer">
+          请确认已授权辅助功能权限，并在授权后重启了分屏助手。前往「系统设置 → 隐私与安全性 → 辅助功能」检查 Workspace Container 是否已开启。
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-1">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          关闭容器窗口后，绑定的应用会被关闭吗？
+        </div>
+        <div class="faq-answer">
+          不会。关闭容器窗口只会解除绑定关系，所有应用窗口会保留在当前位置，不会被关闭或最小化。
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-2">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          分屏助手会收集我的数据吗？
+        </div>
+        <div class="faq-answer">
+          不会。分屏助手不收集任何用户数据，不访问网络，不包含任何第三方 SDK。你的隐私得到完全保护。详情请查看<a href="privacy.html">隐私政策</a>。
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-3">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          支持哪些 macOS 版本？
+        </div>
+        <div class="faq-answer">
+          分屏助手支持 macOS 13.0 Ventura 及更高版本，包括 macOS 14 Sonoma 和 macOS 15 Sequoia。同时支持 Apple Silicon 和 Intel 芯片的 Mac。
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-4">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          购买后可以退款吗？
+        </div>
+        <div class="faq-answer">
+          分屏助手通过 Mac App Store 销售，退款政策遵循 Apple 的标准流程。如需退款，请通过 Apple 的「报告问题」页面提交申请。
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-5">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          如何获取帮助或反馈问题？
+        </div>
+        <div class="faq-answer">
+          你可以通过 GitHub Issues 页面提交问题或建议。我们会尽快回复并处理。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="guide.html">操作方法</a></li>
+      <li><a href="privacy.html">隐私政策</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

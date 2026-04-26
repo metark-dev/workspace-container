@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workspace Container — 分屏助手 | 多窗口布局同步管理</title>
+  <meta name="description" content="分屏助手让你用一个容器窗口统一管理所有应用的布局。拖入即绑定，移动缩放同步跟随。macOS 专属窗口管理工具。">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 首页专属样式 */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(41, 151, 255, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border);
+      border-radius: 980px;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #30d158;
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .hero-subtitle {
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-visual {
+      margin-top: 80px;
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+    }
+
+    .hero-window {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-window-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .hero-window-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .hero-window-dot.red { background: #ff5f57; }
+    .hero-window-dot.yellow { background: #febc2e; }
+    .hero-window-dot.green { background: #28c840; }
+
+    .hero-window-title {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      color: var(--color-text-tertiary);
+    }
+
+    .hero-window-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 16px;
+      min-height: 360px;
+    }
+
+    .hero-tile {
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tile-1 {
+      background: linear-gradient(135deg, rgba(41, 151, 255, 0.15), rgba(41, 151, 255, 0.05));
+      border: 1px solid rgba(41, 151, 255, 0.2);
+    }
+
+    .hero-tile-2 {
+      background: linear-gradient(135deg, rgba(88, 86, 214, 0.15), rgba(88, 86, 214, 0.05));
+      border: 1px solid rgba(88, 86, 214, 0.2);
+    }
+
+    .hero-tile-label {
+      font-size: 12px;
+      color: var(--color-text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-tile-app {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      margin-top: 8px;
+    }
+
+    .hero-tile-lines {
+      margin-top: auto;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .hero-tile-line {
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* 功能区 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 64px;
+    }
+
+    .feature-card {
+      padding: 40px 32px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .feature-icon-blue { background: rgba(41, 151, 255, 0.12); }
+    .feature-icon-purple { background: rgba(88, 86, 214, 0.12); }
+    .feature-icon-green { background: rgba(48, 209, 88, 0.12); }
+    .feature-icon-orange { background: rgba(255, 159, 10, 0.12); }
+    .feature-icon-pink { background: rgba(255, 55, 95, 0.12); }
+    .feature-icon-teal { background: rgba(100, 210, 255, 0.12); }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* 布局展示区 */
+    .layouts-section {
+      background: var(--color-bg-secondary);
+    }
+
+    .layouts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 64px;
+    }
+
+    .layout-card {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .layout-card .layout-demo {
+      margin-bottom: 16px;
+    }
+
+    .layout-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+
+    .layout-desc {
+      font-size: 13px;
+      color: var(--color-text-tertiary);
+      margin-top: 4px;
+    }
+
+    /* 工作流展示 */
+    .workflow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      margin-top: 64px;
+    }
+
+    .workflow-step {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .workflow-content {
+      flex: 1;
+    }
+
+    .workflow-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .workflow-desc {
+      font-size: 17px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 定价区 */
+    .pricing-card {
+      max-width: 480px;
+      margin: 64px auto 0;
+      padding: 48px;
+      text-align: center;
+      border: 1px solid rgba(41, 151, 255, 0.2);
+      background: linear-gradient(180deg, rgba(41, 151, 255, 0.06) 0%, transparent 100%);
+    }
+
+    .pricing-amount {
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin: 24px 0 8px;
+    }
+
+    .pricing-period {
+      font-size: 17px;
+      color: var(--color-text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      padding: 10px 0;
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-check {
+      color: #30d158;
+      font-size: 18px;
+    }
+
+    /* CTA 区 */
+    .cta-section {
+      text-align: center;
+      background: var(--color-bg-secondary);
+    }
+
+    .cta-title {
+      margin-bottom: 16px;
+    }
+
+    .cta-desc {
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+
+    @media (max-width: 768px) {
+      .features-grid,
+      .layouts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-window-content {
+        grid-template-columns: 1fr;
+        min-height: 300px;
+      }
+
+      .workflow-step {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .layouts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">⊞</span>
+      分屏助手
+    </a>
+    <button class="nav-toggle" aria-label="菜单">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="guide.html">操作方法</a></li>
+      <li><a href="notes.html">注意事项</a></li>
+      <li><a href="privacy.html">隐私政策</a></li>
+      <li><a href="#pricing" class="nav-cta">获取分屏助手</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge fade-in">
+    <span class="hero-badge-dot"></span>
+    macOS 专属窗口管理工具
+  </div>
+
+  <h1 class="headline-xl hero-title fade-in stagger-1">
+    一个容器，<br><span class="text-gradient">掌控所有窗口</span>
+  </h1>
+
+  <p class="body-lg hero-subtitle fade-in stagger-2">
+    把多个应用窗口绑定到一个容器中。移动、缩放、最小化——所有窗口同步响应。
+  </p>
+
+  <div class="hero-actions fade-in stagger-3">
+    <a href="#pricing" class="btn btn-primary">
+      <span class="btn-icon">↓</span>
+      在 Mac App Store 下载
+    </a>
+    <a href="guide.html" class="btn btn-secondary">了解更多</a>
+  </div>
+
+  <div class="hero-visual fade-in-up stagger-4">
+    <div class="hero-window">
+      <div class="hero-window-bar">
+        <span class="hero-window-dot red"></span>
+        <span class="hero-window-dot yellow"></span>
+        <span class="hero-window-dot green"></span>
+        <span class="hero-window-title">Workspace Container</span>
+        <span></span>
+      </div>
+      <div class="hero-window-content">
+        <div class="hero-tile hero-tile-1">
+          <div>
+            <div class="hero-tile-label">Tile 1</div>
+            <div class="hero-tile-app">VS Code</div>
+          </div>
+          <div class="hero-tile-lines">
+            <div class="hero-tile-line" style="width: 80%"></div>
+            <div class="hero-tile-line" style="width: 60%"></div>
+            <div class="hero-tile-line" style="width: 90%"></div>
+            <div class="hero-tile-line" style="width: 45%"></div>
+            <div class="hero-tile-line" style="width: 70%"></div>
+          </div>
+        </div>
+        <div class="hero-tile hero-tile-2">
+          <div>
+            <div class="hero-tile-label">Tile 2</div>
+            <div class="hero-tile-app">Safari</div>
+          </div>
+          <div class="hero-tile-lines">
+            <div class="hero-tile-line" style="width: 100%"></div>
+            <div class="hero-tile-line" style="width: 75%"></div>
+            <div class="hero-tile-line" style="width: 55%"></div>
+            <div class="hero-tile-line" style="width: 85%"></div>
+            <div class="hero-tile-line" style="width: 40%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 功能 -->
+<section class="section">
+  <div class="container-wide">
+    <div class="text-center">
+      <h2 class="headline-lg fade-in">为效率而生的功能</h2>
+      <p class="body-lg fade-in stagger-1" style="max-width: 600px; margin: 16px auto 0;">
+        不只是分屏，而是真正的窗口同步管理
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="card feature-card fade-in stagger-1">
+        <div class="feature-icon feature-icon-blue">⊞</div>
+        <div class="feature-title">容器同步</div>
+        <div class="feature-desc">移动容器窗口，所有绑定的应用窗口同步跟随。缩放时自动重新布局，保持完美比例。</div>
+      </div>
+
+      <div class="card feature-card fade-in stagger-2">
+        <div class="feature-icon feature-icon-purple">⊟</div>
+        <div class="feature-title">10 种布局</div>
+        <div class="feature-desc">垂直分割、水平分割、70/30、三列、四宫格……覆盖你能想到的所有工作场景。</div>
+      </div>
+
+      <div class="card feature-card fade-in stagger-3">
+        <div class="feature-icon feature-icon-green">↹</div>
+        <div class="feature-title">拖拽绑定</div>
+        <div class="feature-desc">拖入即绑定，拖出即解绑。操作直观自然，无需菜单，无需设置。</div>
+      </div>
+
+      <div class="card feature-card fade-in stagger-1">
+        <div class="feature-icon feature-icon-orange">⌨</div>
+        <div class="feature-title">快捷键操作</div>
+        <div class="feature-desc">⌃⌥1 到 ⌃⌥4 快速绑定当前窗口到对应区域，手不离键盘。</div>
+      </div>
+
+      <div class="card feature-card fade-in stagger-2">
+        <div class="feature-icon feature-icon-pink">◱</div>
+        <div class="feature-title">全屏支持</div>
+        <div class="feature-desc">支持最大化与模拟全屏模式，充分利用每一寸屏幕空间。</div>
+      </div>
+
+      <div class="card feature-card fade-in stagger-3">
+        <div class="feature-icon feature-icon-teal">☰</div>
+        <div class="feature-title">状态栏控制</div>
+        <div class="feature-desc">菜单栏图标随时切换布局，一键操作，快速响应。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 布局展示 -->
+<section class="section layouts-section" id="layouts">
+  <div class="container-wide">
+    <div class="text-center">
+      <h2 class="headline-lg fade-in">10 种内置布局</h2>
+      <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
+        一键切换，适配不同工作场景
+      </p>
+    </div>
+
+    <div class="layouts-grid">
+      <div class="card layout-card fade-in stagger-1">
+        <div class="layout-demo layout-h2">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-name">垂直分割</div>
+        <div class="layout-desc">左右各半，经典双屏</div>
+      </div>
+
+      <div class="card layout-card fade-in stagger-2">
+        <div class="layout-demo layout-v2">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-name">水平分割</div>
+        <div class="layout-desc">上下各半，适合对比</div>
+      </div>
+
+      <div class="card layout-card fade-in stagger-3">
+        <div class="layout-demo layout-7030">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-name">70 / 30</div>
+        <div class="layout-desc">主窗口 + 侧边参考</div>
+      </div>
+
+      <div class="card layout-card fade-in stagger-1">
+        <div class="layout-demo layout-3070">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-name">30 / 70</div>
+        <div class="layout-desc">侧边导航 + 主内容</div>
+      </div>
+
+      <div class="card layout-card fade-in stagger-2">
+        <div class="layout-demo layout-3col">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+          <div class="tile">3</div>
+        </div>
+        <div class="layout-name">三列布局</div>
+        <div class="layout-desc">多任务并行处理</div>
+      </div>
+
+      <div class="card layout-card fade-in stagger-3">
+        <div class="layout-demo layout-grid">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+          <div class="tile">3</div>
+          <div class="tile">4</div>
+        </div>
+        <div class="layout-name">四宫格</div>
+        <div class="layout-desc">四个应用同时在线</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 工作流 -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="headline-lg fade-in">三步开始</h2>
+      <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
+        简单到不需要教程
+      </p>
+    </div>
+
+    <div class="workflow-steps">
+      <div class="workflow-step fade-in">
+        <div class="step-number">1</div>
+        <div class="workflow-content">
+          <div class="workflow-title">启动分屏助手</div>
+          <div class="workflow-desc">打开应用，容器窗口自动出现。首次使用需授权辅助功能权限。</div>
+        </div>
+      </div>
+
+      <div class="workflow-step fade-in stagger-1">
+        <div class="step-number">2</div>
+        <div class="workflow-content">
+          <div class="workflow-title">绑定窗口</div>
+          <div class="workflow-desc">把任意应用窗口拖入容器，或使用 <span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1-4</span> 快捷键快速绑定。</div>
+        </div>
+      </div>
+
+      <div class="workflow-step fade-in stagger-2">
+        <div class="step-number">3</div>
+        <div class="workflow-content">
+          <div class="workflow-title">开始工作</div>
+          <div class="workflow-desc">移动容器，所有窗口跟随。缩放容器，布局自动调整。专注于你的工作，窗口管理交给分屏助手。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 定价 -->
+<section class="section layouts-section" id="pricing">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="headline-lg fade-in">简单透明的定价</h2>
+      <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
+        一次购买，永久使用
+      </p>
+    </div>
+
+    <div class="pricing-card card fade-in-up">
+      <div class="headline-sm">Workspace Container</div>
+      <div class="pricing-amount">$4.99</div>
+      <div class="pricing-period">一次性买断 · 永久授权</div>
+      <ul class="pricing-features">
+        <li><span class="pricing-check">✓</span> 10 种内置布局</li>
+        <li><span class="pricing-check">✓</span> 无限窗口绑定</li>
+        <li><span class="pricing-check">✓</span> 快捷键支持</li>
+        <li><span class="pricing-check">✓</span> 所有未来更新</li>
+        <li><span class="pricing-check">✓</span> 无订阅 · 无内购</li>
+        <li><span class="pricing-check">✓</span> 不收集任何数据</li>
+      </ul>
+      <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">
+        <span class="btn-icon">↓</span>
+        在 Mac App Store 下载
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section">
+  <div class="container text-center">
+    <h2 class="headline-md cta-title fade-in">准备好掌控你的桌面了吗？</h2>
+    <p class="body-lg cta-desc fade-in stagger-1">
+      告别杂乱的窗口，用分屏助手让工作更有序。
+    </p>
+    <div class="fade-in stagger-2">
+      <a href="#pricing" class="btn btn-primary">
+        <span class="btn-icon">↓</span>
+        立即下载
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="guide.html">操作方法</a></li>
+      <li><a href="notes.html">注意事项</a></li>
+      <li><a href="privacy.html">隐私政策</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
