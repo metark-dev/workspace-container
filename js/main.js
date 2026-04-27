@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileMenu();
   initLayoutDemos();
+  initLangSwitch();
 });
 
 /* ========== 滚动渐入动画 ========== */
@@ -90,6 +91,85 @@ function initLayoutDemos() {
       });
     });
   });
+}
+
+/* ========== 语言切换 ========== */
+function initLangSwitch() {
+  const switcher = document.querySelector('.lang-switcher');
+  if (!switcher) return;
+
+  const btn = switcher.querySelector('.lang-switcher-btn');
+  const dropdown = switcher.querySelector('.lang-dropdown');
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    switcher.classList.toggle('open');
+  });
+
+  document.addEventListener('click', () => {
+    switcher.classList.remove('open');
+  });
+
+  dropdown.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    const lang = link.dataset.lang;
+    if (lang) localStorage.setItem('preferred-lang', lang);
+  });
+
+  autoDetectLang();
+}
+
+function autoDetectLang() {
+  if (localStorage.getItem('preferred-lang')) {
+    redirectToLang(localStorage.getItem('preferred-lang'));
+    return;
+  }
+
+  const supported = ['zh', 'en', 'de', 'ja', 'es', 'ko', 'fr', 'pt'];
+  const browserLangs = navigator.languages || [navigator.language];
+  let matched = null;
+
+  for (const bl of browserLangs) {
+    const code = bl.split('-')[0].toLowerCase();
+    if (supported.includes(code)) {
+      matched = code;
+      break;
+    }
+  }
+
+  if (!matched) matched = 'en';
+
+  localStorage.setItem('preferred-lang', matched);
+  redirectToLang(matched);
+}
+
+function redirectToLang(lang) {
+  const currentLang = document.documentElement.lang.split('-')[0].toLowerCase();
+  if (lang === currentLang) return;
+
+  const path = window.location.pathname;
+  const page = path.split('/').pop() || 'index.html';
+  const supported = ['en', 'de', 'ja', 'es', 'ko', 'fr', 'pt'];
+
+  let basePath;
+  if (supported.some(l => path.includes('/' + l + '/'))) {
+    basePath = path.replace(/\/(en|de|ja|es|ko|fr|pt)\//, '/');
+  } else {
+    basePath = path;
+  }
+
+  let targetUrl;
+  if (lang === 'zh') {
+    targetUrl = basePath;
+  } else {
+    const dir = basePath.substring(0, basePath.lastIndexOf('/') + 1);
+    targetUrl = dir + lang + '/' + page;
+  }
+
+  if (targetUrl !== path) {
+    window.location.href = targetUrl;
+  }
 }
 
 /* ========== 平滑滚动到锚点 ========== */

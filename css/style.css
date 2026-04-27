@@ -138,6 +138,96 @@ img {
   color: #fff !important;
 }
 
+/* 语言切换 */
+.lang-switcher {
+  position: relative;
+  margin-left: 8px;
+}
+
+.lang-switcher-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 980px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.lang-switcher-btn:hover,
+.lang-switcher.open .lang-switcher-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.lang-switcher-icon {
+  font-size: 14px;
+}
+
+.lang-switcher-arrow {
+  font-size: 10px;
+  transition: transform var(--transition-base);
+}
+
+.lang-switcher.open .lang-switcher-arrow {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  background: rgba(28, 28, 30, 0.98);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  z-index: 200;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.lang-switcher.open .lang-dropdown {
+  display: block;
+}
+
+.lang-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.lang-dropdown a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+}
+
+.lang-dropdown a.active {
+  color: var(--color-accent);
+}
+
+.lang-dropdown a.active::after {
+  content: '✓';
+  margin-left: auto;
+  font-size: 12px;
+}
+
 /* 移动端菜单 */
 .nav-toggle {
   display: none;
@@ -481,6 +571,11 @@ img {
 
   .nav-toggle {
     display: block;
+  }
+
+  .lang-dropdown {
+    right: auto;
+    left: 0;
   }
 
   .section {

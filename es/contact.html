@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Workspace Container</title>
+  <meta name="description" content="Contacta con el equipo de Workspace Container para obtener ayuda o enviar comentarios.">
+  <link rel="alternate" hreflang="zh" href="../contact.html">
+  <link rel="alternate" hreflang="en" href="../en/contact.html">
+  <link rel="alternate" hreflang="de" href="../de/contact.html">
+  <link rel="alternate" hreflang="ja" href="../ja/contact.html">
+  <link rel="alternate" hreflang="es" href="contact.html">
+  <link rel="alternate" hreflang="ko" href="../ko/contact.html">
+  <link rel="alternate" hreflang="fr" href="../fr/contact.html">
+  <link rel="alternate" hreflang="pt" href="../pt/contact.html">
+  <link rel="alternate" hreflang="x-default" href="../en/contact.html">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:title" content="Contacto — Workspace Container">
+  <meta property="og:description" content="Contacta con el equipo de Workspace Container para obtener ayuda o enviar comentarios.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .page-hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(41, 151, 255, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-subtitle { max-width: 520px; margin: 16px auto 0; }
+
+    .contact-content { padding: 0 24px 100px; }
+    .contact-inner { max-width: 720px; margin: 0 auto; }
+    .contact-card { padding: 48px; text-align: center; margin-bottom: 32px; }
+
+    .contact-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 24px;
+      background: rgba(41, 151, 255, 0.12);
+    }
+
+    .contact-title { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px; }
+
+    .contact-desc {
+      font-size: 16px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: rgba(41, 151, 255, 0.08);
+      border: 1px solid rgba(41, 151, 255, 0.2);
+      border-radius: 980px;
+      font-size: 17px;
+      color: var(--color-accent);
+      transition: all var(--transition-base);
+    }
+
+    .contact-email:hover {
+      background: rgba(41, 151, 255, 0.15);
+      color: var(--color-accent);
+    }
+
+    .contact-note {
+      font-size: 14px;
+      color: var(--color-text-tertiary);
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">⊞</span>
+      Workspace Container
+    </a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="guide.html">Guía</a></li>
+      <li><a href="notes.html">Notas</a></li>
+      <li><a href="privacy.html">Privacidad</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+      <li><a href="index.html#pricing" class="nav-cta">Obtener App</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-switcher-btn" aria-label="Switch language"><span class="lang-switcher-icon">🌐</span> Español <span class="lang-switcher-arrow">▾</span></button>
+      <div class="lang-dropdown">
+        <a href="../en/contact.html" data-lang="en">English</a>
+        <a href="../contact.html" data-lang="zh">中文</a>
+        <a href="../de/contact.html" data-lang="de">Deutsch</a>
+        <a href="../ja/contact.html" data-lang="ja">日本語</a>
+        <a href="contact.html" data-lang="es" class="active">Español</a>
+        <a href="../ko/contact.html" data-lang="ko">한국어</a>
+        <a href="../fr/contact.html" data-lang="fr">Français</a>
+        <a href="../pt/contact.html" data-lang="pt">Português</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1 class="headline-lg fade-in">Contacto</h1>
+  <p class="body-lg page-hero-subtitle fade-in stagger-1">
+    ¿Tienes alguna pregunta o sugerencia? Nos encantaría saber de ti
+  </p>
+</section>
+
+<div class="contact-content">
+  <div class="contact-inner">
+    <div class="card contact-card fade-in">
+      <div class="contact-icon">✉</div>
+      <div class="contact-title">Envíanos un correo</div>
+      <div class="contact-desc">
+        Si encuentras algún problema al usar Workspace Container, o tienes sugerencias de funciones y comentarios, no dudes en contactarnos. Te responderemos lo antes posible.
+      </div>
+      <a href="mailto:helpuser126@gmail.com" class="contact-email">
+        helpuser126@gmail.com
+      </a>
+      <div class="contact-note">
+        Normalmente respondemos en 1-2 días hábiles.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="guide.html">Guía</a></li>
+      <li><a href="privacy.html">Privacidad</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

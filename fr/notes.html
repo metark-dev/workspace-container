@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes — Workspace Container</title>
+  <meta name="description" content="Configuration requise, détails des permissions et FAQ pour Workspace Container.">
+  <link rel="alternate" hreflang="zh" href="../notes.html">
+  <link rel="alternate" hreflang="en" href="../en/notes.html">
+  <link rel="alternate" hreflang="de" href="../de/notes.html">
+  <link rel="alternate" hreflang="ja" href="../ja/notes.html">
+  <link rel="alternate" hreflang="es" href="../es/notes.html">
+  <link rel="alternate" hreflang="ko" href="../ko/notes.html">
+  <link rel="alternate" hreflang="fr" href="notes.html">
+  <link rel="alternate" hreflang="pt" href="../pt/notes.html">
+  <link rel="alternate" hreflang="x-default" href="../en/notes.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:title" content="Notes — Workspace Container">
+  <meta property="og:description" content="Configuration requise, détails des permissions et FAQ pour Workspace Container.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .page-hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 159, 10, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-subtitle { max-width: 520px; margin: 16px auto 0; }
+
+    .notes-section { padding: 80px 24px; }
+    .notes-section:nth-child(even) { background: var(--color-bg-secondary); }
+    .notes-section-header { margin-bottom: 48px; }
+
+    .notes-section-label {
+      font-size: 14px;
+      color: var(--color-accent);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .req-card { padding: 32px; text-align: center; }
+    .req-icon { font-size: 36px; margin-bottom: 16px; }
+    .req-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .req-value { font-size: 15px; color: var(--color-text-secondary); }
+
+    .permission-card { padding: 40px; display: flex; gap: 32px; align-items: flex-start; }
+
+    .permission-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 159, 10, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .permission-body h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+    .permission-body p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 12px; }
+
+    .permission-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .permission-steps li {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .permission-steps li::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .warning-box {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(255, 159, 10, 0.06);
+      border: 1px solid rgba(255, 159, 10, 0.15);
+      border-radius: var(--radius-md);
+      margin-top: 24px;
+    }
+
+    .warning-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .warning-content { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+    .warning-content strong { color: var(--color-text); }
+
+    .faq-list { display: flex; flex-direction: column; gap: 16px; }
+    .faq-item { padding: 28px 32px; cursor: default; }
+
+    .faq-question {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .faq-q-mark { color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .faq-answer {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      padding-left: 28px;
+    }
+
+    .limit-list { display: flex; flex-direction: column; gap: 16px; }
+    .limit-item { display: flex; gap: 20px; padding: 24px 32px; align-items: flex-start; }
+
+    .limit-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 55, 95, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #ff375f;
+      flex-shrink: 0;
+    }
+
+    .limit-body h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .limit-body p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .req-grid { grid-template-columns: 1fr; }
+      .permission-card { flex-direction: column; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">⊞</span>
+      Workspace Container
+    </a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="privacy.html">Confidentialité</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html#pricing" class="nav-cta">Télécharger</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-switcher-btn" aria-label="Switch language"><span class="lang-switcher-icon">🌐</span> Français <span class="lang-switcher-arrow">▾</span></button>
+      <div class="lang-dropdown">
+        <a href="../en/notes.html" data-lang="en">English</a>
+        <a href="../notes.html" data-lang="zh">中文</a>
+        <a href="../de/notes.html" data-lang="de">Deutsch</a>
+        <a href="../ja/notes.html" data-lang="ja">日本語</a>
+        <a href="../es/notes.html" data-lang="es">Español</a>
+        <a href="../ko/notes.html" data-lang="ko">한국어</a>
+        <a href="notes.html" data-lang="fr" class="active">Français</a>
+        <a href="../pt/notes.html" data-lang="pt">Português</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1 class="headline-lg fade-in">Notes</h1>
+  <p class="body-lg page-hero-subtitle fade-in stagger-1">
+    Veuillez lire avant de commencer
+  </p>
+</section>
+
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">Configuration</div>
+      <h2 class="headline-md">Configuration requise</h2>
+    </div>
+
+    <div class="req-grid">
+      <div class="card req-card fade-in">
+        <div class="req-icon">💻</div>
+        <div class="req-title">Système d'exploitation</div>
+        <div class="req-value">macOS 13.0 Ventura ou ultérieur</div>
+      </div>
+
+      <div class="card req-card fade-in stagger-1">
+        <div class="req-icon">🖥</div>
+        <div class="req-title">Processeurs compatibles</div>
+        <div class="req-value">Apple Silicon (M1/M2/M3/M4) et Intel</div>
+      </div>
+
+      <div class="card req-card fade-in stagger-2">
+        <div class="req-icon">📐</div>
+        <div class="req-title">Affichage</div>
+        <div class="req-value">Résolution recommandée 1440×900 ou supérieure</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">Permission</div>
+      <h2 class="headline-md">Permission d'accessibilité</h2>
+    </div>
+
+    <div class="card permission-card fade-in">
+      <div class="permission-icon">🔐</div>
+      <div class="permission-body">
+        <h3>Pourquoi la permission d'accessibilité est-elle nécessaire ?</h3>
+        <p>Workspace Container utilise l'API d'accessibilité de macOS (AXUIElement) pour contrôler la position et la taille des fenêtres d'autres applications. C'est le seul moyen légitime de gérer les fenêtres sur macOS — toutes les applications de gestion de fenêtres (comme Magnet, Rectangle) nécessitent cette permission.</p>
+        <p>Workspace Container utilise uniquement cette permission pour déplacer et redimensionner les fenêtres. Il ne lit pas le contenu des fenêtres, n'enregistre aucune action et n'accède pas au réseau.</p>
+
+        <h3 style="margin-top: 24px;">Comment accorder la permission</h3>
+        <ol class="permission-steps">
+          <li data-step="1.">Ouvrez les Réglages Système</li>
+          <li data-step="2.">Allez dans Confidentialité et sécurité → Accessibilité</li>
+          <li data-step="3.">Trouvez Workspace Container dans la liste et activez-le</li>
+          <li data-step="4.">S'il n'apparaît pas, cliquez sur « + » pour l'ajouter manuellement</li>
+          <li data-step="5.">Redémarrez Workspace Container après avoir accordé la permission</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="warning-box fade-in">
+      <span class="warning-icon">⚠️</span>
+      <div class="warning-content">
+        <strong>Vous devez redémarrer l'application après avoir accordé la permission.</strong> La permission d'accessibilité de macOS ne prend pas effet tant que l'application est en cours d'exécution — quittez et rouvrez Workspace Container.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">Limitations</div>
+      <h2 class="headline-md">Limitations connues</h2>
+    </div>
+
+    <div class="limit-list">
+      <div class="card limit-item fade-in">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>Pas d'intégration réelle des fenêtres</h3>
+          <p>macOS ne permet pas d'intégrer la fenêtre d'une application dans une autre. Workspace Container simule l'effet de conteneur en contrôlant les positions et tailles des fenêtres, plutôt qu'une véritable intégration.</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-1">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>Certaines applications peuvent être incompatibles</h3>
+          <p>Quelques applications peuvent restreindre le contrôle externe de leurs fenêtres. Si une fenêtre d'application ne peut pas être liée ou déplacée, c'est généralement une limitation de cette application elle-même.</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-2">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>Applications en plein écran</h3>
+          <p>Les fenêtres d'applications en mode plein écran natif de macOS ne peuvent pas être contrôlées par Workspace Container. Quittez le mode plein écran avant de lier.</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-3">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>Écrans multiples</h3>
+          <p>La version actuelle est principalement optimisée pour les configurations à écran unique. Dans les environnements multi-écrans, le conteneur et les fenêtres liées doivent être sur le même écran.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">FAQ</div>
+      <h2 class="headline-md">Questions fréquentes</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="card faq-item fade-in">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          La liaison d'une fenêtre n'a aucun effet ?
+        </div>
+        <div class="faq-answer">
+          Assurez-vous d'avoir accordé la permission d'accessibilité et d'avoir redémarré Workspace Container ensuite. Allez dans Réglages Système → Confidentialité et sécurité → Accessibilité pour vérifier.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-1">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          La fermeture du conteneur fermera-t-elle mes applications ?
+        </div>
+        <div class="faq-answer">
+          Non. La fermeture du conteneur ne fait que délier les fenêtres. Toutes les fenêtres d'applications restent à leur position actuelle — elles ne seront ni fermées ni réduites.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-2">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          Workspace Container collecte-t-il mes données ?
+        </div>
+        <div class="faq-answer">
+          Non. Workspace Container ne collecte aucune donnée utilisateur, n'effectue aucune requête réseau et n'inclut aucun SDK tiers. Votre vie privée est entièrement protégée. Consultez notre <a href="privacy.html">Politique de confidentialité</a> pour plus de détails.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-3">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          Quelles versions de macOS sont prises en charge ?
+        </div>
+        <div class="faq-answer">
+          Workspace Container prend en charge macOS 13.0 Ventura et ultérieur, y compris macOS 14 Sonoma et macOS 15 Sequoia. Les Mac Apple Silicon et Intel sont tous deux pris en charge.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-4">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          Puis-je obtenir un remboursement ?
+        </div>
+        <div class="faq-answer">
+          Workspace Container est vendu via le Mac App Store. Les politiques de remboursement suivent le processus standard d'Apple. Pour demander un remboursement, soumettez votre demande via la page « Signaler un problème » d'Apple.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-5">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          Comment obtenir de l'aide ou signaler un problème ?
+        </div>
+        <div class="faq-answer">
+          Vous pouvez nous contacter par e-mail à <a href="mailto:helpuser126@gmail.com">helpuser126@gmail.com</a> ou visiter notre page <a href="contact.html">Contact</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="guide.html">Guide</a></li>
+      <li><a href="privacy.html">Confidentialité</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

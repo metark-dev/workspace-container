@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workspace Container — 分屏助手 | 多窗口布局同步管理</title>
-  <meta name="description" content="分屏助手让你用一个容器窗口统一管理所有应用的布局。拖入即绑定，移动缩放同步跟随。macOS 专属窗口管理工具。">
-  <link rel="alternate" hreflang="zh" href="index.html">
-  <link rel="alternate" hreflang="en" href="en/index.html">
-  <link rel="alternate" hreflang="de" href="de/index.html">
-  <link rel="alternate" hreflang="ja" href="ja/index.html">
-  <link rel="alternate" hreflang="es" href="es/index.html">
-  <link rel="alternate" hreflang="ko" href="ko/index.html">
-  <link rel="alternate" hreflang="fr" href="fr/index.html">
-  <link rel="alternate" hreflang="pt" href="pt/index.html">
-  <link rel="alternate" hreflang="x-default" href="en/index.html">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:locale:alternate" content="en_US">
-  <meta property="og:title" content="Workspace Container — 分屏助手">
-  <meta property="og:description" content="分屏助手让你用一个容器窗口统一管理所有应用的布局。拖入即绑定，移动缩放同步跟随。">
+  <title>Workspace Container — Gestor de ventanas con mosaico y sincronización para macOS</title>
+  <meta name="description" content="Workspace Container te permite gestionar todas las ventanas de tus aplicaciones en un solo contenedor. Arrastra para vincular, mueve y redimensiona en sincronía. Una herramienta de gestión de ventanas exclusiva para macOS.">
+  <link rel="alternate" hreflang="zh" href="../index.html">
+  <link rel="alternate" hreflang="en" href="../en/index.html">
+  <link rel="alternate" hreflang="de" href="../de/index.html">
+  <link rel="alternate" hreflang="ja" href="../ja/index.html">
+  <link rel="alternate" hreflang="es" href="index.html">
+  <link rel="alternate" hreflang="ko" href="../ko/index.html">
+  <link rel="alternate" hreflang="fr" href="../fr/index.html">
+  <link rel="alternate" hreflang="pt" href="../pt/index.html">
+  <link rel="alternate" hreflang="x-default" href="../en/index.html">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:title" content="Workspace Container — Gestor de ventanas con mosaico y sincronización para macOS">
+  <meta property="og:description" content="Gestiona todas las ventanas de tus aplicaciones en un solo contenedor. Arrastra para vincular, mueve y redimensiona en sincronía.">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <style>
-    /* 首页专属样式 */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -66,15 +65,8 @@
       border-radius: 50%;
     }
 
-    .hero-title {
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .hero-subtitle {
-      max-width: 600px;
-      margin: 0 auto 48px;
-    }
+    .hero-title { margin-bottom: 24px; position: relative; }
+    .hero-subtitle { max-width: 600px; margin: 0 auto 48px; }
 
     .hero-actions {
       display: flex;
@@ -108,12 +100,7 @@
       border-bottom: 1px solid var(--color-border);
     }
 
-    .hero-window-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
+    .hero-window-dot { width: 12px; height: 12px; border-radius: 50%; }
     .hero-window-dot.red { background: #ff5f57; }
     .hero-window-dot.yellow { background: #febc2e; }
     .hero-window-dot.green { background: #28c840; }
@@ -160,11 +147,7 @@
       letter-spacing: 0.05em;
     }
 
-    .hero-tile-app {
-      font-size: 15px;
-      color: var(--color-text-secondary);
-      margin-top: 8px;
-    }
+    .hero-tile-app { font-size: 15px; color: var(--color-text-secondary); margin-top: 8px; }
 
     .hero-tile-lines {
       margin-top: auto;
@@ -174,13 +157,8 @@
       gap: 6px;
     }
 
-    .hero-tile-line {
-      height: 4px;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.06);
-    }
+    .hero-tile-line { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.06); }
 
-    /* 功能区 */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -188,9 +166,7 @@
       margin-top: 64px;
     }
 
-    .feature-card {
-      padding: 40px 32px;
-    }
+    .feature-card { padding: 40px 32px; }
 
     .feature-icon {
       width: 48px;
@@ -210,23 +186,10 @@
     .feature-icon-pink { background: rgba(255, 55, 95, 0.12); }
     .feature-icon-teal { background: rgba(100, 210, 255, 0.12); }
 
-    .feature-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
+    .feature-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .feature-desc { font-size: 15px; color: var(--color-text-secondary); line-height: 1.5; }
 
-    .feature-desc {
-      font-size: 15px;
-      color: var(--color-text-secondary);
-      line-height: 1.5;
-    }
-
-    /* 布局展示区 */
-    .layouts-section {
-      background: var(--color-bg-secondary);
-    }
+    .layouts-section { background: var(--color-bg-secondary); }
 
     .layouts-grid {
       display: grid;
@@ -235,58 +198,17 @@
       margin-top: 64px;
     }
 
-    .layout-card {
-      padding: 24px;
-      text-align: center;
-    }
+    .layout-card { padding: 24px; text-align: center; }
+    .layout-card .layout-demo { margin-bottom: 16px; }
+    .layout-name { font-size: 15px; font-weight: 500; color: var(--color-text); }
+    .layout-desc { font-size: 13px; color: var(--color-text-tertiary); margin-top: 4px; }
 
-    .layout-card .layout-demo {
-      margin-bottom: 16px;
-    }
+    .workflow-steps { display: flex; flex-direction: column; gap: 48px; margin-top: 64px; }
+    .workflow-step { display: flex; gap: 32px; align-items: flex-start; }
+    .workflow-content { flex: 1; }
+    .workflow-title { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+    .workflow-desc { font-size: 17px; color: var(--color-text-secondary); line-height: 1.6; }
 
-    .layout-name {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--color-text);
-    }
-
-    .layout-desc {
-      font-size: 13px;
-      color: var(--color-text-tertiary);
-      margin-top: 4px;
-    }
-
-    /* 工作流展示 */
-    .workflow-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-      margin-top: 64px;
-    }
-
-    .workflow-step {
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-    }
-
-    .workflow-content {
-      flex: 1;
-    }
-
-    .workflow-title {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .workflow-desc {
-      font-size: 17px;
-      color: var(--color-text-secondary);
-      line-height: 1.6;
-    }
-
-    /* 定价区 */
     .pricing-card {
       max-width: 480px;
       margin: 64px auto 0;
@@ -296,24 +218,10 @@
       background: linear-gradient(180deg, rgba(41, 151, 255, 0.06) 0%, transparent 100%);
     }
 
-    .pricing-amount {
-      font-size: 64px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      margin: 24px 0 8px;
-    }
+    .pricing-amount { font-size: 64px; font-weight: 700; letter-spacing: -0.04em; margin: 24px 0 8px; }
+    .pricing-period { font-size: 17px; color: var(--color-text-secondary); margin-bottom: 32px; }
 
-    .pricing-period {
-      font-size: 17px;
-      color: var(--color-text-secondary);
-      margin-bottom: 32px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 32px;
-    }
+    .pricing-features { list-style: none; text-align: left; margin-bottom: 32px; }
 
     .pricing-features li {
       padding: 10px 0;
@@ -325,113 +233,78 @@
       border-bottom: 1px solid var(--color-border);
     }
 
-    .pricing-features li:last-child {
-      border-bottom: none;
-    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-check { color: #30d158; font-size: 18px; }
 
-    .pricing-check {
-      color: #30d158;
-      font-size: 18px;
-    }
-
-    /* CTA 区 */
-    .cta-section {
-      text-align: center;
-      background: var(--color-bg-secondary);
-    }
-
-    .cta-title {
-      margin-bottom: 16px;
-    }
-
-    .cta-desc {
-      max-width: 500px;
-      margin: 0 auto 40px;
-    }
+    .cta-section { text-align: center; background: var(--color-bg-secondary); }
+    .cta-title { margin-bottom: 16px; }
+    .cta-desc { max-width: 500px; margin: 0 auto 40px; }
 
     @media (max-width: 768px) {
-      .features-grid,
-      .layouts-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-window-content {
-        grid-template-columns: 1fr;
-        min-height: 300px;
-      }
-
-      .workflow-step {
-        flex-direction: column;
-        gap: 16px;
-      }
+      .features-grid, .layouts-grid { grid-template-columns: 1fr; }
+      .hero-window-content { grid-template-columns: 1fr; min-height: 300px; }
+      .workflow-step { flex-direction: column; gap: 16px; }
     }
 
     @media (min-width: 769px) and (max-width: 1024px) {
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .layouts-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .layouts-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
-<!-- 导航 -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <span class="nav-logo-icon">⊞</span>
-      分屏助手
+      Workspace Container
     </a>
-    <button class="nav-toggle" aria-label="菜单">☰</button>
+    <button class="nav-toggle" aria-label="Menú">☰</button>
     <ul class="nav-links">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="guide.html">操作方法</a></li>
-      <li><a href="notes.html">注意事项</a></li>
-      <li><a href="privacy.html">隐私政策</a></li>
-      <li><a href="contact.html">联系我们</a></li>
-      <li><a href="#pricing" class="nav-cta">获取分屏助手</a></li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="guide.html">Guía</a></li>
+      <li><a href="notes.html">Notas</a></li>
+      <li><a href="privacy.html">Privacidad</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+      <li><a href="#pricing" class="nav-cta">Obtener App</a></li>
     </ul>
     <div class="lang-switcher">
-      <button class="lang-switcher-btn" aria-label="切换语言"><span class="lang-switcher-icon">🌐</span> 中文 <span class="lang-switcher-arrow">▾</span></button>
+      <button class="lang-switcher-btn" aria-label="Switch language"><span class="lang-switcher-icon">🌐</span> Español <span class="lang-switcher-arrow">▾</span></button>
       <div class="lang-dropdown">
-        <a href="en/index.html" data-lang="en">English</a>
-        <a href="index.html" data-lang="zh" class="active">中文</a>
-        <a href="de/index.html" data-lang="de">Deutsch</a>
-        <a href="ja/index.html" data-lang="ja">日本語</a>
-        <a href="es/index.html" data-lang="es">Español</a>
-        <a href="ko/index.html" data-lang="ko">한국어</a>
-        <a href="fr/index.html" data-lang="fr">Français</a>
-        <a href="pt/index.html" data-lang="pt">Português</a>
+        <a href="../en/index.html" data-lang="en">English</a>
+        <a href="../index.html" data-lang="zh">中文</a>
+        <a href="../de/index.html" data-lang="de">Deutsch</a>
+        <a href="../ja/index.html" data-lang="ja">日本語</a>
+        <a href="index.html" data-lang="es" class="active">Español</a>
+        <a href="../ko/index.html" data-lang="ko">한국어</a>
+        <a href="../fr/index.html" data-lang="fr">Français</a>
+        <a href="../pt/index.html" data-lang="pt">Português</a>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-badge fade-in">
     <span class="hero-badge-dot"></span>
-    macOS 专属窗口管理工具
+    Gestor de ventanas exclusivo para macOS
   </div>
 
   <h1 class="headline-xl hero-title fade-in stagger-1">
-    一个容器，<br><span class="text-gradient">掌控所有窗口</span>
+    Un contenedor,<br><span class="text-gradient">todas las ventanas sincronizadas</span>
   </h1>
 
   <p class="body-lg hero-subtitle fade-in stagger-2">
-    把多个应用窗口绑定到一个容器中。移动、缩放、最小化——所有窗口同步响应。
+    Vincula múltiples ventanas de aplicaciones en un solo contenedor. Mueve, redimensiona, minimiza — todas las ventanas responden en sincronía.
   </p>
 
   <div class="hero-actions fade-in stagger-3">
     <a href="#pricing" class="btn btn-primary">
       <span class="btn-icon">↓</span>
-      在 Mac App Store 下载
+      Descargar en Mac App Store
     </a>
-    <a href="guide.html" class="btn btn-secondary">了解更多</a>
+    <a href="guide.html" class="btn btn-secondary">Más información</a>
   </div>
 
   <div class="hero-visual fade-in-up stagger-4">
@@ -475,63 +348,61 @@
   </div>
 </section>
 
-<!-- 功能 -->
 <section class="section">
   <div class="container-wide">
     <div class="text-center">
-      <h2 class="headline-lg fade-in">为效率而生的功能</h2>
+      <h2 class="headline-lg fade-in">Diseñado para la productividad</h2>
       <p class="body-lg fade-in stagger-1" style="max-width: 600px; margin: 16px auto 0;">
-        不只是分屏，而是真正的窗口同步管理
+        Más que mosaicos — gestión de ventanas verdaderamente sincronizada
       </p>
     </div>
 
     <div class="features-grid">
       <div class="card feature-card fade-in stagger-1">
         <div class="feature-icon feature-icon-blue">⊞</div>
-        <div class="feature-title">容器同步</div>
-        <div class="feature-desc">移动容器窗口，所有绑定的应用窗口同步跟随。缩放时自动重新布局，保持完美比例。</div>
+        <div class="feature-title">Sincronización del contenedor</div>
+        <div class="feature-desc">Mueve la ventana del contenedor y todas las ventanas vinculadas se mueven en sincronía. Redimensiona y los diseños se ajustan automáticamente para mantener proporciones perfectas.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-2">
         <div class="feature-icon feature-icon-purple">⊟</div>
-        <div class="feature-title">10 种布局</div>
-        <div class="feature-desc">垂直分割、水平分割、70/30、三列、四宫格……覆盖你能想到的所有工作场景。</div>
+        <div class="feature-title">10 diseños</div>
+        <div class="feature-desc">División vertical, división horizontal, 70/30, tres columnas, cuadrícula… cubriendo cada escenario de espacio de trabajo que puedas imaginar.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-3">
         <div class="feature-icon feature-icon-green">↹</div>
-        <div class="feature-title">拖拽绑定</div>
-        <div class="feature-desc">拖入即绑定，拖出即解绑。操作直观自然，无需菜单，无需设置。</div>
+        <div class="feature-title">Arrastrar para vincular</div>
+        <div class="feature-desc">Arrastra para vincular, arrastra fuera para desvincular. Intuitivo y natural — sin menús, sin configuración necesaria.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-1">
         <div class="feature-icon feature-icon-orange">⌨</div>
-        <div class="feature-title">快捷键操作</div>
-        <div class="feature-desc">⌃⌥1 到 ⌃⌥4 快速绑定当前窗口到对应区域，手不离键盘。</div>
+        <div class="feature-title">Atajos de teclado</div>
+        <div class="feature-desc">Usa ⌃⌥1 a ⌃⌥4 para vincular rápidamente la ventana actual a un mosaico. Mantén las manos en el teclado.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-2">
         <div class="feature-icon feature-icon-pink">◱</div>
-        <div class="feature-title">全屏支持</div>
-        <div class="feature-desc">支持最大化与模拟全屏模式，充分利用每一寸屏幕空间。</div>
+        <div class="feature-title">Soporte de pantalla completa</div>
+        <div class="feature-desc">Compatible con modos de maximizar y pantalla completa simulada para aprovechar al máximo cada centímetro de pantalla.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-3">
         <div class="feature-icon feature-icon-teal">☰</div>
-        <div class="feature-title">状态栏控制</div>
-        <div class="feature-desc">菜单栏图标随时切换布局，一键操作，快速响应。</div>
+        <div class="feature-title">Control desde la barra de menú</div>
+        <div class="feature-desc">Cambia de diseño en cualquier momento desde el icono de la barra de menú. Un clic, respuesta instantánea.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 布局展示 -->
 <section class="section layouts-section" id="layouts">
   <div class="container-wide">
     <div class="text-center">
-      <h2 class="headline-lg fade-in">10 种内置布局</h2>
+      <h2 class="headline-lg fade-in">10 diseños integrados</h2>
       <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
-        一键切换，适配不同工作场景
+        Cambia instantáneamente según tu flujo de trabajo
       </p>
     </div>
 
@@ -541,8 +412,8 @@
           <div class="tile">1</div>
           <div class="tile">2</div>
         </div>
-        <div class="layout-name">垂直分割</div>
-        <div class="layout-desc">左右各半，经典双屏</div>
+        <div class="layout-name">División vertical</div>
+        <div class="layout-desc">Clásica pantalla dual lado a lado</div>
       </div>
 
       <div class="card layout-card fade-in stagger-2">
@@ -550,8 +421,8 @@
           <div class="tile">1</div>
           <div class="tile">2</div>
         </div>
-        <div class="layout-name">水平分割</div>
-        <div class="layout-desc">上下各半，适合对比</div>
+        <div class="layout-name">División horizontal</div>
+        <div class="layout-desc">Arriba y abajo, ideal para comparar</div>
       </div>
 
       <div class="card layout-card fade-in stagger-3">
@@ -560,7 +431,7 @@
           <div class="tile">2</div>
         </div>
         <div class="layout-name">70 / 30</div>
-        <div class="layout-desc">主窗口 + 侧边参考</div>
+        <div class="layout-desc">Ventana principal + referencia lateral</div>
       </div>
 
       <div class="card layout-card fade-in stagger-1">
@@ -569,7 +440,7 @@
           <div class="tile">2</div>
         </div>
         <div class="layout-name">30 / 70</div>
-        <div class="layout-desc">侧边导航 + 主内容</div>
+        <div class="layout-desc">Navegación lateral + contenido principal</div>
       </div>
 
       <div class="card layout-card fade-in stagger-2">
@@ -578,8 +449,8 @@
           <div class="tile">2</div>
           <div class="tile">3</div>
         </div>
-        <div class="layout-name">三列布局</div>
-        <div class="layout-desc">多任务并行处理</div>
+        <div class="layout-name">Tres columnas</div>
+        <div class="layout-desc">Multitarea en paralelo</div>
       </div>
 
       <div class="card layout-card fade-in stagger-3">
@@ -589,20 +460,19 @@
           <div class="tile">3</div>
           <div class="tile">4</div>
         </div>
-        <div class="layout-name">四宫格</div>
-        <div class="layout-desc">四个应用同时在线</div>
+        <div class="layout-name">Cuadrícula</div>
+        <div class="layout-desc">Cuatro aplicaciones a la vez</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 工作流 -->
 <section class="section">
   <div class="container">
     <div class="text-center">
-      <h2 class="headline-lg fade-in">三步开始</h2>
+      <h2 class="headline-lg fade-in">Tres pasos para empezar</h2>
       <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
-        简单到不需要教程
+        Tan sencillo que no necesitas tutorial
       </p>
     </div>
 
@@ -610,89 +480,86 @@
       <div class="workflow-step fade-in">
         <div class="step-number">1</div>
         <div class="workflow-content">
-          <div class="workflow-title">启动分屏助手</div>
-          <div class="workflow-desc">打开应用，容器窗口自动出现。首次使用需授权辅助功能权限。</div>
+          <div class="workflow-title">Abre Workspace Container</div>
+          <div class="workflow-desc">Abre la aplicación y la ventana del contenedor aparece automáticamente. Concede el permiso de Accesibilidad en el primer inicio.</div>
         </div>
       </div>
 
       <div class="workflow-step fade-in stagger-1">
         <div class="step-number">2</div>
         <div class="workflow-content">
-          <div class="workflow-title">绑定窗口</div>
-          <div class="workflow-desc">把任意应用窗口拖入容器，或使用 <span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1-4</span> 快捷键快速绑定。</div>
+          <div class="workflow-title">Vincula ventanas</div>
+          <div class="workflow-desc">Arrastra cualquier ventana de aplicación al contenedor, o usa los atajos <span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1-4</span> para vincular rápidamente.</div>
         </div>
       </div>
 
       <div class="workflow-step fade-in stagger-2">
         <div class="step-number">3</div>
         <div class="workflow-content">
-          <div class="workflow-title">开始工作</div>
-          <div class="workflow-desc">移动容器，所有窗口跟随。缩放容器，布局自动调整。专注于你的工作，窗口管理交给分屏助手。</div>
+          <div class="workflow-title">Ponte a trabajar</div>
+          <div class="workflow-desc">Mueve el contenedor, todas las ventanas lo siguen. Redimensiona el contenedor, los diseños se ajustan automáticamente. Concéntrate en tu trabajo — deja que Workspace Container se encargue de las ventanas.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 定价 -->
 <section class="section layouts-section" id="pricing">
   <div class="container">
     <div class="text-center">
-      <h2 class="headline-lg fade-in">简单透明的定价</h2>
+      <h2 class="headline-lg fade-in">Precio simple y transparente</h2>
       <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
-        一次购买，永久使用
+        Compra una vez, úsalo para siempre
       </p>
     </div>
 
     <div class="pricing-card card fade-in-up">
       <div class="headline-sm">Workspace Container</div>
       <div class="pricing-amount">$4.99</div>
-      <div class="pricing-period">一次性买断 · 永久授权</div>
+      <div class="pricing-period">Compra única · Licencia de por vida</div>
       <ul class="pricing-features">
-        <li><span class="pricing-check">✓</span> 10 种内置布局</li>
-        <li><span class="pricing-check">✓</span> 无限窗口绑定</li>
-        <li><span class="pricing-check">✓</span> 快捷键支持</li>
-        <li><span class="pricing-check">✓</span> 所有未来更新</li>
-        <li><span class="pricing-check">✓</span> 无订阅 · 无内购</li>
-        <li><span class="pricing-check">✓</span> 不收集任何数据</li>
+        <li><span class="pricing-check">✓</span> 10 diseños integrados</li>
+        <li><span class="pricing-check">✓</span> Vinculación ilimitada de ventanas</li>
+        <li><span class="pricing-check">✓</span> Atajos de teclado</li>
+        <li><span class="pricing-check">✓</span> Todas las actualizaciones futuras</li>
+        <li><span class="pricing-check">✓</span> Sin suscripción · Sin compras dentro de la app</li>
+        <li><span class="pricing-check">✓</span> Cero recopilación de datos</li>
       </ul>
       <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">
         <span class="btn-icon">↓</span>
-        在 Mac App Store 下载
+        Descargar en Mac App Store
       </a>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="section cta-section">
   <div class="container text-center">
-    <h2 class="headline-md cta-title fade-in">准备好掌控你的桌面了吗？</h2>
+    <h2 class="headline-md cta-title fade-in">¿Listo para tomar el control de tu escritorio?</h2>
     <p class="body-lg cta-desc fade-in stagger-1">
-      告别杂乱的窗口，用分屏助手让工作更有序。
+      Despídete de las ventanas desordenadas. Deja que Workspace Container ponga orden en tu flujo de trabajo.
     </p>
     <div class="fade-in stagger-2">
       <a href="#pricing" class="btn btn-primary">
         <span class="btn-icon">↓</span>
-        立即下载
+        Descargar ahora
       </a>
     </div>
   </div>
 </section>
 
-<!-- 页脚 -->
 <footer class="footer">
   <div class="footer-inner">
     <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
     <ul class="footer-links">
-      <li><a href="guide.html">操作方法</a></li>
-      <li><a href="notes.html">注意事项</a></li>
-      <li><a href="privacy.html">隐私政策</a></li>
-      <li><a href="contact.html">联系我们</a></li>
+      <li><a href="guide.html">Guía</a></li>
+      <li><a href="notes.html">Notas</a></li>
+      <li><a href="privacy.html">Privacidad</a></li>
+      <li><a href="contact.html">Contacto</a></li>
     </ul>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

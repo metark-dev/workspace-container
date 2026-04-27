@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workspace Container — 分屏助手 | 多窗口布局同步管理</title>
-  <meta name="description" content="分屏助手让你用一个容器窗口统一管理所有应用的布局。拖入即绑定，移动缩放同步跟随。macOS 专属窗口管理工具。">
-  <link rel="alternate" hreflang="zh" href="index.html">
-  <link rel="alternate" hreflang="en" href="en/index.html">
-  <link rel="alternate" hreflang="de" href="de/index.html">
-  <link rel="alternate" hreflang="ja" href="ja/index.html">
-  <link rel="alternate" hreflang="es" href="es/index.html">
-  <link rel="alternate" hreflang="ko" href="ko/index.html">
-  <link rel="alternate" hreflang="fr" href="fr/index.html">
-  <link rel="alternate" hreflang="pt" href="pt/index.html">
-  <link rel="alternate" hreflang="x-default" href="en/index.html">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:locale:alternate" content="en_US">
-  <meta property="og:title" content="Workspace Container — 分屏助手">
-  <meta property="og:description" content="分屏助手让你用一个容器窗口统一管理所有应用的布局。拖入即绑定，移动缩放同步跟随。">
+  <title>Workspace Container — macOS 전용 윈도우 타일링 및 동기화 매니저</title>
+  <meta name="description" content="Workspace Container로 모든 앱 윈도우를 하나의 컨테이너에서 관리하세요. 드래그로 바인딩하고, 이동과 크기 조절을 동기화합니다. macOS 전용 윈도우 관리 도구입니다.">
+  <link rel="alternate" hreflang="zh" href="../index.html">
+  <link rel="alternate" hreflang="en" href="../en/index.html">
+  <link rel="alternate" hreflang="de" href="../de/index.html">
+  <link rel="alternate" hreflang="ja" href="../ja/index.html">
+  <link rel="alternate" hreflang="es" href="../es/index.html">
+  <link rel="alternate" hreflang="ko" href="index.html">
+  <link rel="alternate" hreflang="fr" href="../fr/index.html">
+  <link rel="alternate" hreflang="pt" href="../pt/index.html">
+  <link rel="alternate" hreflang="x-default" href="../en/index.html">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:title" content="Workspace Container — macOS 전용 윈도우 타일링 및 동기화 매니저">
+  <meta property="og:description" content="모든 앱 윈도우를 하나의 컨테이너에서 관리하세요. 드래그로 바인딩하고, 이동과 크기 조절을 동기화합니다.">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <style>
-    /* 首页专属样式 */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -66,15 +65,8 @@
       border-radius: 50%;
     }
 
-    .hero-title {
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .hero-subtitle {
-      max-width: 600px;
-      margin: 0 auto 48px;
-    }
+    .hero-title { margin-bottom: 24px; position: relative; }
+    .hero-subtitle { max-width: 600px; margin: 0 auto 48px; }
 
     .hero-actions {
       display: flex;
@@ -108,12 +100,7 @@
       border-bottom: 1px solid var(--color-border);
     }
 
-    .hero-window-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
+    .hero-window-dot { width: 12px; height: 12px; border-radius: 50%; }
     .hero-window-dot.red { background: #ff5f57; }
     .hero-window-dot.yellow { background: #febc2e; }
     .hero-window-dot.green { background: #28c840; }
@@ -160,11 +147,7 @@
       letter-spacing: 0.05em;
     }
 
-    .hero-tile-app {
-      font-size: 15px;
-      color: var(--color-text-secondary);
-      margin-top: 8px;
-    }
+    .hero-tile-app { font-size: 15px; color: var(--color-text-secondary); margin-top: 8px; }
 
     .hero-tile-lines {
       margin-top: auto;
@@ -174,13 +157,8 @@
       gap: 6px;
     }
 
-    .hero-tile-line {
-      height: 4px;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.06);
-    }
+    .hero-tile-line { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.06); }
 
-    /* 功能区 */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -188,9 +166,7 @@
       margin-top: 64px;
     }
 
-    .feature-card {
-      padding: 40px 32px;
-    }
+    .feature-card { padding: 40px 32px; }
 
     .feature-icon {
       width: 48px;
@@ -210,23 +186,10 @@
     .feature-icon-pink { background: rgba(255, 55, 95, 0.12); }
     .feature-icon-teal { background: rgba(100, 210, 255, 0.12); }
 
-    .feature-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
+    .feature-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .feature-desc { font-size: 15px; color: var(--color-text-secondary); line-height: 1.5; }
 
-    .feature-desc {
-      font-size: 15px;
-      color: var(--color-text-secondary);
-      line-height: 1.5;
-    }
-
-    /* 布局展示区 */
-    .layouts-section {
-      background: var(--color-bg-secondary);
-    }
+    .layouts-section { background: var(--color-bg-secondary); }
 
     .layouts-grid {
       display: grid;
@@ -235,58 +198,17 @@
       margin-top: 64px;
     }
 
-    .layout-card {
-      padding: 24px;
-      text-align: center;
-    }
+    .layout-card { padding: 24px; text-align: center; }
+    .layout-card .layout-demo { margin-bottom: 16px; }
+    .layout-name { font-size: 15px; font-weight: 500; color: var(--color-text); }
+    .layout-desc { font-size: 13px; color: var(--color-text-tertiary); margin-top: 4px; }
 
-    .layout-card .layout-demo {
-      margin-bottom: 16px;
-    }
+    .workflow-steps { display: flex; flex-direction: column; gap: 48px; margin-top: 64px; }
+    .workflow-step { display: flex; gap: 32px; align-items: flex-start; }
+    .workflow-content { flex: 1; }
+    .workflow-title { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+    .workflow-desc { font-size: 17px; color: var(--color-text-secondary); line-height: 1.6; }
 
-    .layout-name {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--color-text);
-    }
-
-    .layout-desc {
-      font-size: 13px;
-      color: var(--color-text-tertiary);
-      margin-top: 4px;
-    }
-
-    /* 工作流展示 */
-    .workflow-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-      margin-top: 64px;
-    }
-
-    .workflow-step {
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-    }
-
-    .workflow-content {
-      flex: 1;
-    }
-
-    .workflow-title {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .workflow-desc {
-      font-size: 17px;
-      color: var(--color-text-secondary);
-      line-height: 1.6;
-    }
-
-    /* 定价区 */
     .pricing-card {
       max-width: 480px;
       margin: 64px auto 0;
@@ -296,24 +218,10 @@
       background: linear-gradient(180deg, rgba(41, 151, 255, 0.06) 0%, transparent 100%);
     }
 
-    .pricing-amount {
-      font-size: 64px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      margin: 24px 0 8px;
-    }
+    .pricing-amount { font-size: 64px; font-weight: 700; letter-spacing: -0.04em; margin: 24px 0 8px; }
+    .pricing-period { font-size: 17px; color: var(--color-text-secondary); margin-bottom: 32px; }
 
-    .pricing-period {
-      font-size: 17px;
-      color: var(--color-text-secondary);
-      margin-bottom: 32px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 32px;
-    }
+    .pricing-features { list-style: none; text-align: left; margin-bottom: 32px; }
 
     .pricing-features li {
       padding: 10px 0;
@@ -325,113 +233,78 @@
       border-bottom: 1px solid var(--color-border);
     }
 
-    .pricing-features li:last-child {
-      border-bottom: none;
-    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-check { color: #30d158; font-size: 18px; }
 
-    .pricing-check {
-      color: #30d158;
-      font-size: 18px;
-    }
-
-    /* CTA 区 */
-    .cta-section {
-      text-align: center;
-      background: var(--color-bg-secondary);
-    }
-
-    .cta-title {
-      margin-bottom: 16px;
-    }
-
-    .cta-desc {
-      max-width: 500px;
-      margin: 0 auto 40px;
-    }
+    .cta-section { text-align: center; background: var(--color-bg-secondary); }
+    .cta-title { margin-bottom: 16px; }
+    .cta-desc { max-width: 500px; margin: 0 auto 40px; }
 
     @media (max-width: 768px) {
-      .features-grid,
-      .layouts-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-window-content {
-        grid-template-columns: 1fr;
-        min-height: 300px;
-      }
-
-      .workflow-step {
-        flex-direction: column;
-        gap: 16px;
-      }
+      .features-grid, .layouts-grid { grid-template-columns: 1fr; }
+      .hero-window-content { grid-template-columns: 1fr; min-height: 300px; }
+      .workflow-step { flex-direction: column; gap: 16px; }
     }
 
     @media (min-width: 769px) and (max-width: 1024px) {
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .layouts-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .layouts-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
-<!-- 导航 -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <span class="nav-logo-icon">⊞</span>
-      分屏助手
+      Workspace Container
     </a>
-    <button class="nav-toggle" aria-label="菜单">☰</button>
+    <button class="nav-toggle" aria-label="메뉴">☰</button>
     <ul class="nav-links">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="guide.html">操作方法</a></li>
-      <li><a href="notes.html">注意事项</a></li>
-      <li><a href="privacy.html">隐私政策</a></li>
-      <li><a href="contact.html">联系我们</a></li>
-      <li><a href="#pricing" class="nav-cta">获取分屏助手</a></li>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="guide.html">사용법</a></li>
+      <li><a href="notes.html">참고사항</a></li>
+      <li><a href="privacy.html">개인정보</a></li>
+      <li><a href="contact.html">문의하기</a></li>
+      <li><a href="#pricing" class="nav-cta">앱 받기</a></li>
     </ul>
     <div class="lang-switcher">
-      <button class="lang-switcher-btn" aria-label="切换语言"><span class="lang-switcher-icon">🌐</span> 中文 <span class="lang-switcher-arrow">▾</span></button>
+      <button class="lang-switcher-btn" aria-label="Switch language"><span class="lang-switcher-icon">🌐</span> 한국어 <span class="lang-switcher-arrow">▾</span></button>
       <div class="lang-dropdown">
-        <a href="en/index.html" data-lang="en">English</a>
-        <a href="index.html" data-lang="zh" class="active">中文</a>
-        <a href="de/index.html" data-lang="de">Deutsch</a>
-        <a href="ja/index.html" data-lang="ja">日本語</a>
-        <a href="es/index.html" data-lang="es">Español</a>
-        <a href="ko/index.html" data-lang="ko">한국어</a>
-        <a href="fr/index.html" data-lang="fr">Français</a>
-        <a href="pt/index.html" data-lang="pt">Português</a>
+        <a href="../en/index.html" data-lang="en">English</a>
+        <a href="../index.html" data-lang="zh">中文</a>
+        <a href="../de/index.html" data-lang="de">Deutsch</a>
+        <a href="../ja/index.html" data-lang="ja">日本語</a>
+        <a href="../es/index.html" data-lang="es">Español</a>
+        <a href="index.html" data-lang="ko" class="active">한국어</a>
+        <a href="../fr/index.html" data-lang="fr">Français</a>
+        <a href="../pt/index.html" data-lang="pt">Português</a>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-badge fade-in">
     <span class="hero-badge-dot"></span>
-    macOS 专属窗口管理工具
+    macOS 전용 윈도우 매니저
   </div>
 
   <h1 class="headline-xl hero-title fade-in stagger-1">
-    一个容器，<br><span class="text-gradient">掌控所有窗口</span>
+    하나의 컨테이너로,<br><span class="text-gradient">모든 창을 동기화</span>
   </h1>
 
   <p class="body-lg hero-subtitle fade-in stagger-2">
-    把多个应用窗口绑定到一个容器中。移动、缩放、最小化——所有窗口同步响应。
+    여러 앱 윈도우를 하나의 컨테이너에 바인딩하세요. 이동, 크기 조절, 최소화 — 모든 창이 동기화됩니다.
   </p>
 
   <div class="hero-actions fade-in stagger-3">
     <a href="#pricing" class="btn btn-primary">
       <span class="btn-icon">↓</span>
-      在 Mac App Store 下载
+      Mac App Store에서 다운로드
     </a>
-    <a href="guide.html" class="btn btn-secondary">了解更多</a>
+    <a href="guide.html" class="btn btn-secondary">자세히 보기</a>
   </div>
 
   <div class="hero-visual fade-in-up stagger-4">
@@ -475,63 +348,61 @@
   </div>
 </section>
 
-<!-- 功能 -->
 <section class="section">
   <div class="container-wide">
     <div class="text-center">
-      <h2 class="headline-lg fade-in">为效率而生的功能</h2>
+      <h2 class="headline-lg fade-in">생산성을 위한 설계</h2>
       <p class="body-lg fade-in stagger-1" style="max-width: 600px; margin: 16px auto 0;">
-        不只是分屏，而是真正的窗口同步管理
+        단순한 타일링을 넘어선 — 진정한 동기화 윈도우 관리
       </p>
     </div>
 
     <div class="features-grid">
       <div class="card feature-card fade-in stagger-1">
         <div class="feature-icon feature-icon-blue">⊞</div>
-        <div class="feature-title">容器同步</div>
-        <div class="feature-desc">移动容器窗口，所有绑定的应用窗口同步跟随。缩放时自动重新布局，保持完美比例。</div>
+        <div class="feature-title">컨테이너 동기화</div>
+        <div class="feature-desc">컨테이너 윈도우를 이동하면 바인딩된 모든 앱 윈도우가 함께 따라옵니다. 크기를 조절하면 레이아웃이 자동으로 비율에 맞게 조정됩니다.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-2">
         <div class="feature-icon feature-icon-purple">⊟</div>
-        <div class="feature-title">10 种布局</div>
-        <div class="feature-desc">垂直分割、水平分割、70/30、三列、四宫格……覆盖你能想到的所有工作场景。</div>
+        <div class="feature-title">10가지 레이아웃</div>
+        <div class="feature-desc">세로 분할, 가로 분할, 70/30, 3단 분할, 4분할 그리드… 모든 작업 환경에 맞는 레이아웃을 제공합니다.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-3">
         <div class="feature-icon feature-icon-green">↹</div>
-        <div class="feature-title">拖拽绑定</div>
-        <div class="feature-desc">拖入即绑定，拖出即解绑。操作直观自然，无需菜单，无需设置。</div>
+        <div class="feature-title">드래그로 바인딩</div>
+        <div class="feature-desc">드래그하여 바인딩, 드래그하여 해제. 직관적이고 자연스러운 조작 — 메뉴도, 설정도 필요 없습니다.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-1">
         <div class="feature-icon feature-icon-orange">⌨</div>
-        <div class="feature-title">快捷键操作</div>
-        <div class="feature-desc">⌃⌥1 到 ⌃⌥4 快速绑定当前窗口到对应区域，手不离键盘。</div>
+        <div class="feature-title">키보드 단축키</div>
+        <div class="feature-desc">⌃⌥1부터 ⌃⌥4까지 단축키로 현재 윈도우를 타일에 빠르게 바인딩하세요. 키보드에서 손을 뗄 필요가 없습니다.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-2">
         <div class="feature-icon feature-icon-pink">◱</div>
-        <div class="feature-title">全屏支持</div>
-        <div class="feature-desc">支持最大化与模拟全屏模式，充分利用每一寸屏幕空间。</div>
+        <div class="feature-title">전체 화면 지원</div>
+        <div class="feature-desc">최대화 및 시뮬레이션 전체 화면 모드를 지원하여 화면 공간을 최대한 활용할 수 있습니다.</div>
       </div>
 
       <div class="card feature-card fade-in stagger-3">
         <div class="feature-icon feature-icon-teal">☰</div>
-        <div class="feature-title">状态栏控制</div>
-        <div class="feature-desc">菜单栏图标随时切换布局，一键操作，快速响应。</div>
+        <div class="feature-title">메뉴 바 제어</div>
+        <div class="feature-desc">메뉴 바 아이콘에서 언제든지 레이아웃을 전환할 수 있습니다. 한 번의 클릭으로 즉시 반영됩니다.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 布局展示 -->
 <section class="section layouts-section" id="layouts">
   <div class="container-wide">
     <div class="text-center">
-      <h2 class="headline-lg fade-in">10 种内置布局</h2>
+      <h2 class="headline-lg fade-in">10가지 기본 레이아웃</h2>
       <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
-        一键切换，适配不同工作场景
+        작업 흐름에 맞게 즉시 전환
       </p>
     </div>
 
@@ -541,8 +412,8 @@
           <div class="tile">1</div>
           <div class="tile">2</div>
         </div>
-        <div class="layout-name">垂直分割</div>
-        <div class="layout-desc">左右各半，经典双屏</div>
+        <div class="layout-name">세로 분할</div>
+        <div class="layout-desc">클래식 좌우 듀얼 화면</div>
       </div>
 
       <div class="card layout-card fade-in stagger-2">
@@ -550,8 +421,8 @@
           <div class="tile">1</div>
           <div class="tile">2</div>
         </div>
-        <div class="layout-name">水平分割</div>
-        <div class="layout-desc">上下各半，适合对比</div>
+        <div class="layout-name">가로 분할</div>
+        <div class="layout-desc">상하 분할, 비교에 적합</div>
       </div>
 
       <div class="card layout-card fade-in stagger-3">
@@ -560,7 +431,7 @@
           <div class="tile">2</div>
         </div>
         <div class="layout-name">70 / 30</div>
-        <div class="layout-desc">主窗口 + 侧边参考</div>
+        <div class="layout-desc">메인 윈도우 + 사이드 참조</div>
       </div>
 
       <div class="card layout-card fade-in stagger-1">
@@ -569,7 +440,7 @@
           <div class="tile">2</div>
         </div>
         <div class="layout-name">30 / 70</div>
-        <div class="layout-desc">侧边导航 + 主内容</div>
+        <div class="layout-desc">사이드 내비게이션 + 메인 콘텐츠</div>
       </div>
 
       <div class="card layout-card fade-in stagger-2">
@@ -578,8 +449,8 @@
           <div class="tile">2</div>
           <div class="tile">3</div>
         </div>
-        <div class="layout-name">三列布局</div>
-        <div class="layout-desc">多任务并行处理</div>
+        <div class="layout-name">3단 분할</div>
+        <div class="layout-desc">병렬 멀티태스킹</div>
       </div>
 
       <div class="card layout-card fade-in stagger-3">
@@ -589,20 +460,19 @@
           <div class="tile">3</div>
           <div class="tile">4</div>
         </div>
-        <div class="layout-name">四宫格</div>
-        <div class="layout-desc">四个应用同时在线</div>
+        <div class="layout-name">4분할 그리드</div>
+        <div class="layout-desc">네 개의 앱을 동시에</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 工作流 -->
 <section class="section">
   <div class="container">
     <div class="text-center">
-      <h2 class="headline-lg fade-in">三步开始</h2>
+      <h2 class="headline-lg fade-in">세 단계로 시작하기</h2>
       <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
-        简单到不需要教程
+        너무 간단해서 튜토리얼이 필요 없습니다
       </p>
     </div>
 
@@ -610,89 +480,86 @@
       <div class="workflow-step fade-in">
         <div class="step-number">1</div>
         <div class="workflow-content">
-          <div class="workflow-title">启动分屏助手</div>
-          <div class="workflow-desc">打开应用，容器窗口自动出现。首次使用需授权辅助功能权限。</div>
+          <div class="workflow-title">Workspace Container 실행</div>
+          <div class="workflow-desc">앱을 열면 컨테이너 윈도우가 자동으로 나타납니다. 처음 실행 시 접근성 권한을 허용해 주세요.</div>
         </div>
       </div>
 
       <div class="workflow-step fade-in stagger-1">
         <div class="step-number">2</div>
         <div class="workflow-content">
-          <div class="workflow-title">绑定窗口</div>
-          <div class="workflow-desc">把任意应用窗口拖入容器，或使用 <span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1-4</span> 快捷键快速绑定。</div>
+          <div class="workflow-title">윈도우 바인딩</div>
+          <div class="workflow-desc">앱 윈도우를 컨테이너로 드래그하거나, <span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1-4</span> 단축키로 빠르게 바인딩하세요.</div>
         </div>
       </div>
 
       <div class="workflow-step fade-in stagger-2">
         <div class="step-number">3</div>
         <div class="workflow-content">
-          <div class="workflow-title">开始工作</div>
-          <div class="workflow-desc">移动容器，所有窗口跟随。缩放容器，布局自动调整。专注于你的工作，窗口管理交给分屏助手。</div>
+          <div class="workflow-title">작업 시작</div>
+          <div class="workflow-desc">컨테이너를 이동하면 모든 윈도우가 따라옵니다. 크기를 조절하면 레이아웃이 자동으로 조정됩니다. 작업에 집중하세요 — 윈도우 관리는 Workspace Container에 맡기세요.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 定价 -->
 <section class="section layouts-section" id="pricing">
   <div class="container">
     <div class="text-center">
-      <h2 class="headline-lg fade-in">简单透明的定价</h2>
+      <h2 class="headline-lg fade-in">심플하고 투명한 가격</h2>
       <p class="body-lg fade-in stagger-1" style="max-width: 500px; margin: 16px auto 0;">
-        一次购买，永久使用
+        한 번 구매, 평생 사용
       </p>
     </div>
 
     <div class="pricing-card card fade-in-up">
       <div class="headline-sm">Workspace Container</div>
       <div class="pricing-amount">$4.99</div>
-      <div class="pricing-period">一次性买断 · 永久授权</div>
+      <div class="pricing-period">일회성 구매 · 평생 라이선스</div>
       <ul class="pricing-features">
-        <li><span class="pricing-check">✓</span> 10 种内置布局</li>
-        <li><span class="pricing-check">✓</span> 无限窗口绑定</li>
-        <li><span class="pricing-check">✓</span> 快捷键支持</li>
-        <li><span class="pricing-check">✓</span> 所有未来更新</li>
-        <li><span class="pricing-check">✓</span> 无订阅 · 无内购</li>
-        <li><span class="pricing-check">✓</span> 不收集任何数据</li>
+        <li><span class="pricing-check">✓</span> 10가지 기본 레이아웃</li>
+        <li><span class="pricing-check">✓</span> 무제한 윈도우 바인딩</li>
+        <li><span class="pricing-check">✓</span> 키보드 단축키</li>
+        <li><span class="pricing-check">✓</span> 모든 향후 업데이트 포함</li>
+        <li><span class="pricing-check">✓</span> 구독 없음 · 인앱 결제 없음</li>
+        <li><span class="pricing-check">✓</span> 데이터 수집 없음</li>
       </ul>
       <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">
         <span class="btn-icon">↓</span>
-        在 Mac App Store 下载
+        Mac App Store에서 다운로드
       </a>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="section cta-section">
   <div class="container text-center">
-    <h2 class="headline-md cta-title fade-in">准备好掌控你的桌面了吗？</h2>
+    <h2 class="headline-md cta-title fade-in">데스크톱을 완벽하게 제어할 준비가 되셨나요?</h2>
     <p class="body-lg cta-desc fade-in stagger-1">
-      告别杂乱的窗口，用分屏助手让工作更有序。
+      어지러운 윈도우와 작별하세요. Workspace Container가 작업 흐름에 질서를 가져다 드립니다.
     </p>
     <div class="fade-in stagger-2">
       <a href="#pricing" class="btn btn-primary">
         <span class="btn-icon">↓</span>
-        立即下载
+        지금 다운로드
       </a>
     </div>
   </div>
 </section>
 
-<!-- 页脚 -->
 <footer class="footer">
   <div class="footer-inner">
     <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
     <ul class="footer-links">
-      <li><a href="guide.html">操作方法</a></li>
-      <li><a href="notes.html">注意事项</a></li>
-      <li><a href="privacy.html">隐私政策</a></li>
-      <li><a href="contact.html">联系我们</a></li>
+      <li><a href="guide.html">사용법</a></li>
+      <li><a href="notes.html">참고사항</a></li>
+      <li><a href="privacy.html">개인정보</a></li>
+      <li><a href="contact.html">문의하기</a></li>
     </ul>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

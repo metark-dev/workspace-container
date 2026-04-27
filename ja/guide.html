@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使い方 — Workspace Container</title>
+  <meta name="description" content="Workspace Containerの使い方を学びましょう。macOSのウィンドウレイアウト管理の詳細ガイドとキーボードショートカット。">
+  <link rel="alternate" hreflang="zh" href="../guide.html">
+  <link rel="alternate" hreflang="en" href="../en/guide.html">
+  <link rel="alternate" hreflang="de" href="../de/guide.html">
+  <link rel="alternate" hreflang="ja" href="guide.html">
+  <link rel="alternate" hreflang="es" href="../es/guide.html">
+  <link rel="alternate" hreflang="ko" href="../ko/guide.html">
+  <link rel="alternate" hreflang="fr" href="../fr/guide.html">
+  <link rel="alternate" hreflang="pt" href="../pt/guide.html">
+  <link rel="alternate" hreflang="x-default" href="../en/guide.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:title" content="使い方 — Workspace Container">
+  <meta property="og:description" content="Workspace Containerの使い方を学びましょう。macOSのウィンドウレイアウト管理の詳細ガイド。">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .page-hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(88, 86, 214, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-subtitle { max-width: 520px; margin: 16px auto 0; }
+
+    .guide-section { padding: 80px 24px; }
+    .guide-section:nth-child(even) { background: var(--color-bg-secondary); }
+    .guide-section-header { margin-bottom: 48px; }
+
+    .guide-section-label {
+      font-size: 14px;
+      color: var(--color-accent);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .steps-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .step-card { display: flex; gap: 24px; align-items: flex-start; padding: 32px; }
+    .step-card-body h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .step-card-body p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+
+    .shortcut-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+
+    .shortcut-table th,
+    .shortcut-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .shortcut-table th {
+      font-size: 13px;
+      color: var(--color-text-tertiary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .shortcut-table td { font-size: 15px; color: var(--color-text-secondary); }
+    .shortcut-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+    .layout-ref-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .layout-ref-card { padding: 24px; }
+    .layout-ref-card .layout-demo { margin-bottom: 16px; }
+    .layout-ref-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .layout-ref-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; }
+    .layout-ref-shortcut { margin-top: 8px; }
+
+    .tip-box {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(41, 151, 255, 0.06);
+      border: 1px solid rgba(41, 151, 255, 0.15);
+      border-radius: var(--radius-md);
+      margin-top: 32px;
+    }
+
+    .tip-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .tip-content { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+    .tip-content strong { color: var(--color-text); }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .method-card { padding: 32px; }
+    .method-card-icon { font-size: 32px; margin-bottom: 16px; }
+    .method-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .method-card p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+
+    .method-steps { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+
+    .method-steps li {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .method-steps li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    @media (max-width: 768px) {
+      .layout-ref-grid, .method-grid { grid-template-columns: 1fr; }
+      .step-card { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">⊞</span>
+      Workspace Container
+    </a>
+    <button class="nav-toggle" aria-label="メニュー">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="guide.html">使い方</a></li>
+      <li><a href="notes.html">注意事項</a></li>
+      <li><a href="privacy.html">プライバシー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+      <li><a href="index.html#pricing" class="nav-cta">アプリを入手</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-switcher-btn" aria-label="Switch language"><span class="lang-switcher-icon">🌐</span> 日本語 <span class="lang-switcher-arrow">▾</span></button>
+      <div class="lang-dropdown">
+        <a href="../en/guide.html" data-lang="en">English</a>
+        <a href="../guide.html" data-lang="zh">中文</a>
+        <a href="../de/guide.html" data-lang="de">Deutsch</a>
+        <a href="guide.html" data-lang="ja" class="active">日本語</a>
+        <a href="../es/guide.html" data-lang="es">Español</a>
+        <a href="../ko/guide.html" data-lang="ko">한국어</a>
+        <a href="../fr/guide.html" data-lang="fr">Français</a>
+        <a href="../pt/guide.html" data-lang="pt">Português</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1 class="headline-lg fade-in">使い方</h1>
+  <p class="body-lg page-hero-subtitle fade-in stagger-1">
+    インストールからマスターまで、わずか数分
+  </p>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Getting Started</div>
+      <h2 class="headline-md">初回起動</h2>
+    </div>
+
+    <div class="steps-list">
+      <div class="card step-card fade-in">
+        <div class="step-number">1</div>
+        <div class="step-card-body">
+          <h3>インストール＆起動</h3>
+          <p>Mac App StoreからWorkspace Containerをダウンロード。コンテナウィンドウが自動的に画面に表示されます。</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-1">
+        <div class="step-number">2</div>
+        <div class="step-card-body">
+          <h3>アクセシビリティ権限を許可</h3>
+          <p>初回起動時にシステムが権限を要求します。システム設定 → プライバシーとセキュリティ → アクセシビリティで、Workspace Containerを有効にしてください。他のウィンドウを制御するために必要です。</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-2">
+        <div class="step-number">3</div>
+        <div class="step-card-body">
+          <h3>最初のウィンドウをバインド</h3>
+          <p>任意のアプリ（例：Safari、メモ）を開き、そのウィンドウをコンテナエリアにドラッグします。または<span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1</span>で、フォーカス中のウィンドウを最初のタイルにバインドできます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box fade-in">
+      <span class="tip-icon">💡</span>
+      <div class="tip-content">
+        <strong>権限を許可した後、アプリを再起動してください。</strong>反映されない場合は、Workspace Containerを終了して再度開いてください。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Window Binding</div>
+      <h2 class="headline-md">2つのバインド方法</h2>
+    </div>
+
+    <div class="method-grid">
+      <div class="card method-card fade-in">
+        <div class="method-card-icon">🖱</div>
+        <h3>ドラッグでバインド</h3>
+        <p>マウス／トラックパッドユーザーに最も直感的な方法です。</p>
+        <ul class="method-steps">
+          <li>アプリウィンドウをコンテナに向かってドラッグ</li>
+          <li>対象のタイルがハイライト表示</li>
+          <li>離すとウィンドウがスナップ配置</li>
+          <li>コンテナ外にドラッグするとバインド解除</li>
+        </ul>
+      </div>
+
+      <div class="card method-card fade-in stagger-1">
+        <div class="method-card-icon">⌨️</div>
+        <h3>キーボードでバインド</h3>
+        <p>効率的なキーボード駆動のワークフロー。</p>
+        <ul class="method-steps">
+          <li>アプリウィンドウをクリックしてフォーカス</li>
+          <li><span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1-4</span>を押す</li>
+          <li>ウィンドウが対応するタイルにバインド</li>
+          <li>同じショートカットを再度押すとバインド解除</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Shortcuts</div>
+      <h2 class="headline-md">キーボードショートカット</h2>
+    </div>
+
+    <div class="card fade-in" style="padding: 0; overflow: hidden;">
+      <table class="shortcut-table">
+        <thead>
+          <tr>
+            <th>ショートカット</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="kbd">⌃</span> <span class="kbd">⌥</span> <span class="kbd">1</span></td>
+            <td>現在のウィンドウをタイル1にバインド</td>
+          </tr>
+          <tr>
+            <td><span class="kbd">⌃</span> <span class="kbd">⌥</span> <span class="kbd">2</span></td>
+            <td>現在のウィンドウをタイル2にバインド</td>
+          </tr>
+          <tr>
+            <td><span class="kbd">⌃</span> <span class="kbd">⌥</span> <span class="kbd">3</span></td>
+            <td>現在のウィンドウをタイル3にバインド</td>
+          </tr>
+          <tr>
+            <td><span class="kbd">⌃</span> <span class="kbd">⌥</span> <span class="kbd">4</span></td>
+            <td>現在のウィンドウをタイル4にバインド</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box fade-in">
+      <span class="tip-icon">💡</span>
+      <div class="tip-content">
+        タイル番号は現在のレイアウトによって異なります。例えば、縦分割ではタイル1が左半分、タイル2が右半分になります。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container-wide">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Layouts</div>
+      <h2 class="headline-md">内蔵レイアウト一覧</h2>
+    </div>
+
+    <div class="layout-ref-grid">
+      <div class="card layout-ref-card fade-in">
+        <div class="layout-demo layout-h2">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-ref-name">縦分割</div>
+        <div class="layout-ref-desc">50/50の左右分割。コード＋ブラウザ、ドキュメント＋参考資料など、定番のデュアルスクリーンレイアウト。</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in stagger-1">
+        <div class="layout-demo layout-v2">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-ref-name">横分割</div>
+        <div class="layout-ref-desc">50/50の上下分割。コンテンツ比較、コード＋ターミナル、縦型ワークフローに最適。</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in">
+        <div class="layout-demo layout-7030">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-ref-name">70 / 30</div>
+        <div class="layout-ref-desc">メインウィンドウ70%、サイドバー30%。メインアプリ＋チャット、メモなどのツールに最適。</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in stagger-1">
+        <div class="layout-demo layout-3070">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-ref-name">30 / 70</div>
+        <div class="layout-ref-desc">左ナビゲーション30%、メインコンテンツ70%。ファイルマネージャー＋エディターの構成に最適。</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in">
+        <div class="layout-demo layout-3col">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+          <div class="tile">3</div>
+        </div>
+        <div class="layout-ref-name">3カラム</div>
+        <div class="layout-ref-desc">均等3分割で並列マルチタスク。デザイン＋コード＋プレビュー、メール＋カレンダー＋メモなど。</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in stagger-1">
+        <div class="layout-demo layout-grid">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+          <div class="tile">3</div>
+          <div class="tile">4</div>
+        </div>
+        <div class="layout-ref-name">4分割グリッド</div>
+        <div class="layout-ref-desc">2×2グリッドで4つのアプリを同時表示。モニタリングダッシュボードや複数ドキュメントの比較に最適。</div>
+      </div>
+    </div>
+
+    <div class="tip-box fade-in" style="margin-top: 32px;">
+      <span class="tip-icon">💡</span>
+      <div class="tip-content">
+        メニューバーからいつでもレイアウトを切り替えられます。Workspace Containerのアイコンをクリックして、必要なレイアウトを選択してください。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Sync Behavior</div>
+      <h2 class="headline-md">コンテナとウィンドウの連動</h2>
+    </div>
+
+    <div class="steps-list">
+      <div class="card step-card fade-in">
+        <div class="feature-icon feature-icon-blue" style="width: 36px; height: 36px; font-size: 18px; border-radius: 10px;">↔</div>
+        <div class="step-card-body">
+          <h3>移動同期</h3>
+          <p>コンテナウィンドウをドラッグすると、バインドされたすべてのアプリウィンドウが相対位置を維持したまま一緒に移動します。グループ全体をどこにでもドラッグできます。</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-1">
+        <div class="feature-icon feature-icon-purple" style="width: 36px; height: 36px; font-size: 18px; border-radius: 10px;">⤡</div>
+        <div class="step-card-body">
+          <h3>リサイズ同期</h3>
+          <p>コンテナをリサイズすると、バインドされたすべてのウィンドウがレイアウト比率に従って位置とサイズを自動的に再計算します。</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-2">
+        <div class="feature-icon feature-icon-green" style="width: 36px; height: 36px; font-size: 18px; border-radius: 10px;">—</div>
+        <div class="step-card-body">
+          <h3>最小化同期</h3>
+          <p>コンテナを最小化すると、バインドされたすべてのウィンドウが一緒にDockに格納されます。復元すると、すべて元の位置に戻ります。</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-3">
+        <div class="feature-icon feature-icon-orange" style="width: 36px; height: 36px; font-size: 18px; border-radius: 10px;">✕</div>
+        <div class="step-card-body">
+          <h3>閉じるとバインド解除</h3>
+          <p>コンテナを閉じると、すべてのウィンドウのバインドが自動的に解除されます。アプリウィンドウはそのままの位置に残り、閉じられることはありません。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="notes.html">注意事項</a></li>
+      <li><a href="privacy.html">プライバシー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

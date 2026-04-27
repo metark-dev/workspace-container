@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía — Workspace Container</title>
+  <meta name="description" content="Aprende a usar Workspace Container para gestionar los diseños de ventanas en macOS. Guía detallada y atajos de teclado.">
+  <link rel="alternate" hreflang="zh" href="../guide.html">
+  <link rel="alternate" hreflang="en" href="../en/guide.html">
+  <link rel="alternate" hreflang="de" href="../de/guide.html">
+  <link rel="alternate" hreflang="ja" href="../ja/guide.html">
+  <link rel="alternate" hreflang="es" href="guide.html">
+  <link rel="alternate" hreflang="ko" href="../ko/guide.html">
+  <link rel="alternate" hreflang="fr" href="../fr/guide.html">
+  <link rel="alternate" hreflang="pt" href="../pt/guide.html">
+  <link rel="alternate" hreflang="x-default" href="../en/guide.html">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:title" content="Guía — Workspace Container">
+  <meta property="og:description" content="Aprende a usar Workspace Container para gestionar los diseños de ventanas en macOS.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .page-hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(88, 86, 214, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-subtitle { max-width: 520px; margin: 16px auto 0; }
+
+    .guide-section { padding: 80px 24px; }
+    .guide-section:nth-child(even) { background: var(--color-bg-secondary); }
+    .guide-section-header { margin-bottom: 48px; }
+
+    .guide-section-label {
+      font-size: 14px;
+      color: var(--color-accent);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .steps-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .step-card { display: flex; gap: 24px; align-items: flex-start; padding: 32px; }
+    .step-card-body h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .step-card-body p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+
+    .shortcut-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+
+    .shortcut-table th,
+    .shortcut-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .shortcut-table th {
+      font-size: 13px;
+      color: var(--color-text-tertiary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .shortcut-table td { font-size: 15px; color: var(--color-text-secondary); }
+    .shortcut-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+    .layout-ref-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .layout-ref-card { padding: 24px; }
+    .layout-ref-card .layout-demo { margin-bottom: 16px; }
+    .layout-ref-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .layout-ref-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; }
+    .layout-ref-shortcut { margin-top: 8px; }
+
+    .tip-box {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(41, 151, 255, 0.06);
+      border: 1px solid rgba(41, 151, 255, 0.15);
+      border-radius: var(--radius-md);
+      margin-top: 32px;
+    }
+
+    .tip-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .tip-content { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+    .tip-content strong { color: var(--color-text); }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .method-card { padding: 32px; }
+    .method-card-icon { font-size: 32px; margin-bottom: 16px; }
+    .method-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .method-card p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+
+    .method-steps { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+
+    .method-steps li {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .method-steps li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    @media (max-width: 768px) {
+      .layout-ref-grid, .method-grid { grid-template-columns: 1fr; }
+      .step-card { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">⊞</span>
+      Workspace Container
+    </a>
+    <button class="nav-toggle" aria-label="Menú">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="guide.html">Guía</a></li>
+      <li><a href="notes.html">Notas</a></li>
+      <li><a href="privacy.html">Privacidad</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+      <li><a href="index.html#pricing" class="nav-cta">Obtener App</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-switcher-btn" aria-label="Switch language"><span class="lang-switcher-icon">🌐</span> Español <span class="lang-switcher-arrow">▾</span></button>
+      <div class="lang-dropdown">
+        <a href="../en/guide.html" data-lang="en">English</a>
+        <a href="../guide.html" data-lang="zh">中文</a>
+        <a href="../de/guide.html" data-lang="de">Deutsch</a>
+        <a href="../ja/guide.html" data-lang="ja">日本語</a>
+        <a href="guide.html" data-lang="es" class="active">Español</a>
+        <a href="../ko/guide.html" data-lang="ko">한국어</a>
+        <a href="../fr/guide.html" data-lang="fr">Français</a>
+        <a href="../pt/guide.html" data-lang="pt">Português</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1 class="headline-lg fade-in">Guía</h1>
+  <p class="body-lg page-hero-subtitle fade-in stagger-1">
+    De la instalación al dominio en solo unos minutos
+  </p>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Primeros pasos</div>
+      <h2 class="headline-md">Primer inicio</h2>
+    </div>
+
+    <div class="steps-list">
+      <div class="card step-card fade-in">
+        <div class="step-number">1</div>
+        <div class="step-card-body">
+          <h3>Instalar y abrir</h3>
+          <p>Descarga Workspace Container desde la Mac App Store. La ventana del contenedor aparece automáticamente en pantalla.</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-1">
+        <div class="step-number">2</div>
+        <div class="step-card-body">
+          <h3>Conceder permiso de Accesibilidad</h3>
+          <p>En el primer inicio, el sistema solicitará permiso. Ve a Ajustes del Sistema → Privacidad y seguridad → Accesibilidad y activa Workspace Container. Esto es necesario para controlar otras ventanas.</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-2">
+        <div class="step-number">3</div>
+        <div class="step-card-body">
+          <h3>Vincula tu primera ventana</h3>
+          <p>Abre cualquier aplicación (por ejemplo, Safari, Notas) y arrastra su ventana al área del contenedor. O usa <span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1</span> para vincular la ventana activa al primer mosaico.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box fade-in">
+      <span class="tip-icon">💡</span>
+      <div class="tip-content">
+        <strong>Reinicia la aplicación después de conceder el permiso</strong> para que surta efecto. Si la vinculación no funciona, cierra y vuelve a abrir Workspace Container.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Vinculación de ventanas</div>
+      <h2 class="headline-md">Dos formas de vincular</h2>
+    </div>
+
+    <div class="method-grid">
+      <div class="card method-card fade-in">
+        <div class="method-card-icon">🖱</div>
+        <h3>Arrastrar para vincular</h3>
+        <p>El método más intuitivo para usuarios de ratón/trackpad.</p>
+        <ul class="method-steps">
+          <li>Arrastra una ventana de aplicación hacia el contenedor</li>
+          <li>El mosaico de destino se resalta</li>
+          <li>Suelta para ajustar la ventana en su lugar</li>
+          <li>Arrastra fuera del contenedor para desvincular</li>
+        </ul>
+      </div>
+
+      <div class="card method-card fade-in stagger-1">
+        <div class="method-card-icon">⌨️</div>
+        <h3>Vinculación por teclado</h3>
+        <p>Flujo de trabajo eficiente con el teclado.</p>
+        <ul class="method-steps">
+          <li>Haz clic en la ventana de la aplicación para enfocarla</li>
+          <li>Pulsa <span class="kbd">⌃</span><span class="kbd">⌥</span><span class="kbd">1-4</span></li>
+          <li>La ventana se vincula al mosaico correspondiente</li>
+          <li>Pulsa el mismo atajo de nuevo para desvincular</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Atajos</div>
+      <h2 class="headline-md">Atajos de teclado</h2>
+    </div>
+
+    <div class="card fade-in" style="padding: 0; overflow: hidden;">
+      <table class="shortcut-table">
+        <thead>
+          <tr>
+            <th>Atajo</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="kbd">⌃</span> <span class="kbd">⌥</span> <span class="kbd">1</span></td>
+            <td>Vincular la ventana actual al Mosaico 1</td>
+          </tr>
+          <tr>
+            <td><span class="kbd">⌃</span> <span class="kbd">⌥</span> <span class="kbd">2</span></td>
+            <td>Vincular la ventana actual al Mosaico 2</td>
+          </tr>
+          <tr>
+            <td><span class="kbd">⌃</span> <span class="kbd">⌥</span> <span class="kbd">3</span></td>
+            <td>Vincular la ventana actual al Mosaico 3</td>
+          </tr>
+          <tr>
+            <td><span class="kbd">⌃</span> <span class="kbd">⌥</span> <span class="kbd">4</span></td>
+            <td>Vincular la ventana actual al Mosaico 4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box fade-in">
+      <span class="tip-icon">💡</span>
+      <div class="tip-content">
+        Los números de mosaico dependen del diseño actual. Por ejemplo, en división vertical, el Mosaico 1 es la mitad izquierda y el Mosaico 2 es la mitad derecha.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container-wide">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Diseños</div>
+      <h2 class="headline-md">Referencia de diseños integrados</h2>
+    </div>
+
+    <div class="layout-ref-grid">
+      <div class="card layout-ref-card fade-in">
+        <div class="layout-demo layout-h2">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-ref-name">División vertical</div>
+        <div class="layout-ref-desc">50/50 izquierda-derecha. El clásico diseño de doble pantalla para código + navegador, documentos + referencia, etc.</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in stagger-1">
+        <div class="layout-demo layout-v2">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-ref-name">División horizontal</div>
+        <div class="layout-ref-desc">50/50 arriba-abajo. Ideal para comparar contenido, código + terminal y flujos de trabajo verticales.</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in">
+        <div class="layout-demo layout-7030">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-ref-name">70 / 30</div>
+        <div class="layout-ref-desc">Ventana principal al 70%, barra lateral al 30%. Ideal para una app principal + chat, notas u otras herramientas.</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in stagger-1">
+        <div class="layout-demo layout-3070">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+        </div>
+        <div class="layout-ref-name">30 / 70</div>
+        <div class="layout-ref-desc">Navegación izquierda al 30%, contenido principal al 70%. Perfecto para configuraciones de gestor de archivos + editor.</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in">
+        <div class="layout-demo layout-3col">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+          <div class="tile">3</div>
+        </div>
+        <div class="layout-ref-name">Tres columnas</div>
+        <div class="layout-ref-desc">Tercios iguales para multitarea en paralelo. Diseño + código + vista previa, o correo + calendario + notas.</div>
+      </div>
+
+      <div class="card layout-ref-card fade-in stagger-1">
+        <div class="layout-demo layout-grid">
+          <div class="tile">1</div>
+          <div class="tile">2</div>
+          <div class="tile">3</div>
+          <div class="tile">4</div>
+        </div>
+        <div class="layout-ref-name">Cuadrícula</div>
+        <div class="layout-ref-desc">Cuadrícula 2×2 con cuatro apps a la vez. Ideal para paneles de monitoreo y comparación de múltiples documentos.</div>
+      </div>
+    </div>
+
+    <div class="tip-box fade-in" style="margin-top: 32px;">
+      <span class="tip-icon">💡</span>
+      <div class="tip-content">
+        Cambia de diseño en cualquier momento desde la barra de menú. Haz clic en el icono de Workspace Container y selecciona el diseño que necesites.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="guide-section-header fade-in">
+      <div class="guide-section-label">Comportamiento de sincronización</div>
+      <h2 class="headline-md">Interacción entre contenedor y ventanas</h2>
+    </div>
+
+    <div class="steps-list">
+      <div class="card step-card fade-in">
+        <div class="feature-icon feature-icon-blue" style="width: 36px; height: 36px; font-size: 18px; border-radius: 10px;">↔</div>
+        <div class="step-card-body">
+          <h3>Sincronización de movimiento</h3>
+          <p>Cuando arrastras la ventana del contenedor, todas las ventanas vinculadas mantienen sus posiciones relativas y se mueven juntas. Arrastra todo el grupo a cualquier lugar.</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-1">
+        <div class="feature-icon feature-icon-purple" style="width: 36px; height: 36px; font-size: 18px; border-radius: 10px;">⤡</div>
+        <div class="step-card-body">
+          <h3>Sincronización de tamaño</h3>
+          <p>Cuando redimensionas el contenedor, todas las ventanas vinculadas recalculan automáticamente sus posiciones y tamaños según las proporciones del diseño.</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-2">
+        <div class="feature-icon feature-icon-green" style="width: 36px; height: 36px; font-size: 18px; border-radius: 10px;">—</div>
+        <div class="step-card-body">
+          <h3>Sincronización de minimización</h3>
+          <p>Minimizar el contenedor envía todas las ventanas vinculadas al Dock juntas. Restáuralas y todas vuelven a sus posiciones originales.</p>
+        </div>
+      </div>
+
+      <div class="card step-card fade-in stagger-3">
+        <div class="feature-icon feature-icon-orange" style="width: 36px; height: 36px; font-size: 18px; border-radius: 10px;">✕</div>
+        <div class="step-card-body">
+          <h3>Liberación al cerrar</h3>
+          <p>Cerrar el contenedor desvincula automáticamente todas las ventanas. Las ventanas de las aplicaciones permanecen en su lugar y no se cierran.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="notes.html">Notas</a></li>
+      <li><a href="privacy.html">Privacidad</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

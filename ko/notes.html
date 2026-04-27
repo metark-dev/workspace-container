@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>참고사항 — Workspace Container</title>
+  <meta name="description" content="Workspace Container의 시스템 요구사항, 권한 안내 및 자주 묻는 질문입니다.">
+  <link rel="alternate" hreflang="zh" href="../notes.html">
+  <link rel="alternate" hreflang="en" href="../en/notes.html">
+  <link rel="alternate" hreflang="de" href="../de/notes.html">
+  <link rel="alternate" hreflang="ja" href="../ja/notes.html">
+  <link rel="alternate" hreflang="es" href="../es/notes.html">
+  <link rel="alternate" hreflang="ko" href="notes.html">
+  <link rel="alternate" hreflang="fr" href="../fr/notes.html">
+  <link rel="alternate" hreflang="pt" href="../pt/notes.html">
+  <link rel="alternate" hreflang="x-default" href="../en/notes.html">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:title" content="참고사항 — Workspace Container">
+  <meta property="og:description" content="Workspace Container의 시스템 요구사항, 권한 안내 및 자주 묻는 질문입니다.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .page-hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 159, 10, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-subtitle { max-width: 520px; margin: 16px auto 0; }
+
+    .notes-section { padding: 80px 24px; }
+    .notes-section:nth-child(even) { background: var(--color-bg-secondary); }
+    .notes-section-header { margin-bottom: 48px; }
+
+    .notes-section-label {
+      font-size: 14px;
+      color: var(--color-accent);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .req-card { padding: 32px; text-align: center; }
+    .req-icon { font-size: 36px; margin-bottom: 16px; }
+    .req-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .req-value { font-size: 15px; color: var(--color-text-secondary); }
+
+    .permission-card { padding: 40px; display: flex; gap: 32px; align-items: flex-start; }
+
+    .permission-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 159, 10, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .permission-body h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+    .permission-body p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 12px; }
+
+    .permission-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .permission-steps li {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .permission-steps li::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .warning-box {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(255, 159, 10, 0.06);
+      border: 1px solid rgba(255, 159, 10, 0.15);
+      border-radius: var(--radius-md);
+      margin-top: 24px;
+    }
+
+    .warning-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .warning-content { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+    .warning-content strong { color: var(--color-text); }
+
+    .faq-list { display: flex; flex-direction: column; gap: 16px; }
+    .faq-item { padding: 28px 32px; cursor: default; }
+
+    .faq-question {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .faq-q-mark { color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .faq-answer {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      padding-left: 28px;
+    }
+
+    .limit-list { display: flex; flex-direction: column; gap: 16px; }
+    .limit-item { display: flex; gap: 20px; padding: 24px 32px; align-items: flex-start; }
+
+    .limit-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 55, 95, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #ff375f;
+      flex-shrink: 0;
+    }
+
+    .limit-body h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .limit-body p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .req-grid { grid-template-columns: 1fr; }
+      .permission-card { flex-direction: column; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">⊞</span>
+      Workspace Container
+    </a>
+    <button class="nav-toggle" aria-label="메뉴">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">홈</a></li>
+      <li><a href="guide.html">사용법</a></li>
+      <li><a href="notes.html">참고사항</a></li>
+      <li><a href="privacy.html">개인정보</a></li>
+      <li><a href="contact.html">문의하기</a></li>
+      <li><a href="index.html#pricing" class="nav-cta">앱 받기</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-switcher-btn" aria-label="Switch language"><span class="lang-switcher-icon">🌐</span> 한국어 <span class="lang-switcher-arrow">▾</span></button>
+      <div class="lang-dropdown">
+        <a href="../en/notes.html" data-lang="en">English</a>
+        <a href="../notes.html" data-lang="zh">中文</a>
+        <a href="../de/notes.html" data-lang="de">Deutsch</a>
+        <a href="../ja/notes.html" data-lang="ja">日本語</a>
+        <a href="../es/notes.html" data-lang="es">Español</a>
+        <a href="notes.html" data-lang="ko" class="active">한국어</a>
+        <a href="../fr/notes.html" data-lang="fr">Français</a>
+        <a href="../pt/notes.html" data-lang="pt">Português</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1 class="headline-lg fade-in">참고사항</h1>
+  <p class="body-lg page-hero-subtitle fade-in stagger-1">
+    시작하기 전에 확인해 주세요
+  </p>
+</section>
+
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">요구사항</div>
+      <h2 class="headline-md">시스템 요구사항</h2>
+    </div>
+
+    <div class="req-grid">
+      <div class="card req-card fade-in">
+        <div class="req-icon">💻</div>
+        <div class="req-title">운영체제</div>
+        <div class="req-value">macOS 13.0 Ventura 이상</div>
+      </div>
+
+      <div class="card req-card fade-in stagger-1">
+        <div class="req-icon">🖥</div>
+        <div class="req-title">지원 칩</div>
+        <div class="req-value">Apple Silicon (M1/M2/M3/M4) 및 Intel</div>
+      </div>
+
+      <div class="card req-card fade-in stagger-2">
+        <div class="req-icon">📐</div>
+        <div class="req-title">디스플레이</div>
+        <div class="req-value">권장 해상도 1440×900 이상</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">권한</div>
+      <h2 class="headline-md">접근성 권한</h2>
+    </div>
+
+    <div class="card permission-card fade-in">
+      <div class="permission-icon">🔐</div>
+      <div class="permission-body">
+        <h3>접근성 권한이 필요한 이유</h3>
+        <p>Workspace Container는 macOS 접근성 API(AXUIElement)를 사용하여 다른 앱 윈도우의 위치와 크기를 제어합니다. 이것은 macOS에서 윈도우를 관리하는 유일한 공식 방법이며, 모든 윈도우 관리 앱(Magnet, Rectangle 등)이 이 권한을 필요로 합니다.</p>
+        <p>Workspace Container는 이 권한을 윈도우 이동과 크기 조절에만 사용합니다. 윈도우 내용을 읽거나, 동작을 기록하거나, 네트워크에 접근하지 않습니다.</p>
+
+        <h3 style="margin-top: 24px;">권한 허용 방법</h3>
+        <ol class="permission-steps">
+          <li data-step="1.">시스템 설정 열기</li>
+          <li data-step="2.">개인정보 보호 및 보안 → 접근성으로 이동</li>
+          <li data-step="3.">목록에서 Workspace Container를 찾아 활성화</li>
+          <li data-step="4.">목록에 없으면 "+" 버튼을 클릭하여 수동으로 추가</li>
+          <li data-step="5.">권한 허용 후 Workspace Container 재시작</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="warning-box fade-in">
+      <span class="warning-icon">⚠️</span>
+      <div class="warning-content">
+        <strong>권한 허용 후 반드시 앱을 재시작해야 합니다.</strong> macOS 접근성 권한은 앱 실행 중에는 적용되지 않습니다 — Workspace Container를 종료한 후 다시 실행하세요.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">제한사항</div>
+      <h2 class="headline-md">알려진 제한사항</h2>
+    </div>
+
+    <div class="limit-list">
+      <div class="card limit-item fade-in">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>실제 윈도우 임베딩 불가</h3>
+          <p>macOS는 한 앱의 윈도우를 다른 앱 안에 임베딩하는 것을 허용하지 않습니다. Workspace Container는 실제 임베딩이 아닌 윈도우 위치와 크기를 제어하여 컨테이너 효과를 시뮬레이션합니다.</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-1">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>일부 앱 호환 불가</h3>
+          <p>일부 앱은 외부에서 윈도우를 제어하는 것을 제한할 수 있습니다. 앱 윈도우를 바인딩하거나 이동할 수 없는 경우, 이는 일반적으로 해당 앱 자체의 제한사항입니다.</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-2">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>전체 화면 앱</h3>
+          <p>macOS 기본 전체 화면 모드의 앱 윈도우는 Workspace Container로 제어할 수 없습니다. 바인딩하기 전에 전체 화면 모드를 해제하세요.</p>
+        </div>
+      </div>
+
+      <div class="card limit-item fade-in stagger-3">
+        <div class="limit-icon">!</div>
+        <div class="limit-body">
+          <h3>다중 디스플레이</h3>
+          <p>현재 버전은 주로 단일 디스플레이 환경에 최적화되어 있습니다. 다중 디스플레이 환경에서는 컨테이너와 바인딩된 윈도우가 같은 화면에 있어야 합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="notes-section">
+  <div class="container">
+    <div class="notes-section-header fade-in">
+      <div class="notes-section-label">FAQ</div>
+      <h2 class="headline-md">자주 묻는 질문</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="card faq-item fade-in">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          윈도우를 바인딩해도 반응이 없나요?
+        </div>
+        <div class="faq-answer">
+          접근성 권한을 허용했는지, 그리고 허용 후 Workspace Container를 재시작했는지 확인하세요. 시스템 설정 → 개인정보 보호 및 보안 → 접근성에서 확인할 수 있습니다.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-1">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          컨테이너를 닫으면 앱도 종료되나요?
+        </div>
+        <div class="faq-answer">
+          아니요. 컨테이너를 닫으면 윈도우 바인딩만 해제됩니다. 모든 앱 윈도우는 현재 위치에 그대로 유지되며, 닫히거나 최소화되지 않습니다.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-2">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          Workspace Container가 데이터를 수집하나요?
+        </div>
+        <div class="faq-answer">
+          아니요. Workspace Container는 사용자 데이터를 일절 수집하지 않으며, 네트워크 요청을 하지 않고, 서드파티 SDK를 포함하지 않습니다. 개인정보가 완벽하게 보호됩니다. 자세한 내용은 <a href="privacy.html">개인정보 보호정책</a>을 참조하세요.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-3">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          어떤 macOS 버전을 지원하나요?
+        </div>
+        <div class="faq-answer">
+          Workspace Container는 macOS 13.0 Ventura 이상을 지원하며, macOS 14 Sonoma와 macOS 15 Sequoia도 포함됩니다. Apple Silicon과 Intel Mac 모두 지원합니다.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-4">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          환불받을 수 있나요?
+        </div>
+        <div class="faq-answer">
+          Workspace Container는 Mac App Store를 통해 판매됩니다. 환불 정책은 Apple의 표준 절차를 따릅니다. 환불을 요청하려면 Apple의 "문제 신고" 페이지에서 제출하세요.
+        </div>
+      </div>
+
+      <div class="card faq-item fade-in stagger-5">
+        <div class="faq-question">
+          <span class="faq-q-mark">Q</span>
+          도움을 받거나 문제를 신고하려면 어떻게 하나요?
+        </div>
+        <div class="faq-answer">
+          이메일 <a href="mailto:helpuser126@gmail.com">helpuser126@gmail.com</a>으로 연락하시거나 <a href="contact.html">문의하기</a> 페이지를 방문해 주세요.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">홈</a></li>
+      <li><a href="guide.html">사용법</a></li>
+      <li><a href="privacy.html">개인정보</a></li>
+      <li><a href="contact.html">문의하기</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

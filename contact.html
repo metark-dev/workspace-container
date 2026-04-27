@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我们 — Workspace Container 分屏助手</title>
+  <meta name="description" content="联系分屏助手团队，获取帮助或提交反馈。">
+  <link rel="alternate" hreflang="zh" href="contact.html">
+  <link rel="alternate" hreflang="en" href="en/contact.html">
+  <link rel="alternate" hreflang="de" href="de/contact.html">
+  <link rel="alternate" hreflang="ja" href="ja/contact.html">
+  <link rel="alternate" hreflang="es" href="es/contact.html">
+  <link rel="alternate" hreflang="ko" href="ko/contact.html">
+  <link rel="alternate" hreflang="fr" href="fr/contact.html">
+  <link rel="alternate" hreflang="pt" href="pt/contact.html">
+  <link rel="alternate" hreflang="x-default" href="en/contact.html">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="联系我们 — Workspace Container 分屏助手">
+  <meta property="og:description" content="联系分屏助手团队，获取帮助或提交反馈。">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(41, 151, 255, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-subtitle {
+      max-width: 520px;
+      margin: 16px auto 0;
+    }
+
+    .contact-content {
+      padding: 0 24px 100px;
+    }
+
+    .contact-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      padding: 48px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .contact-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 24px;
+      background: rgba(41, 151, 255, 0.12);
+    }
+
+    .contact-title {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .contact-desc {
+      font-size: 16px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: rgba(41, 151, 255, 0.08);
+      border: 1px solid rgba(41, 151, 255, 0.2);
+      border-radius: 980px;
+      font-size: 17px;
+      color: var(--color-accent);
+      transition: all var(--transition-base);
+    }
+
+    .contact-email:hover {
+      background: rgba(41, 151, 255, 0.15);
+      color: var(--color-accent);
+    }
+
+    .contact-note {
+      font-size: 14px;
+      color: var(--color-text-tertiary);
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">⊞</span>
+      分屏助手
+    </a>
+    <button class="nav-toggle" aria-label="菜单">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="guide.html">操作方法</a></li>
+      <li><a href="notes.html">注意事项</a></li>
+      <li><a href="privacy.html">隐私政策</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+      <li><a href="index.html#pricing" class="nav-cta">获取分屏助手</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-switcher-btn" aria-label="切换语言"><span class="lang-switcher-icon">🌐</span> 中文 <span class="lang-switcher-arrow">▾</span></button>
+      <div class="lang-dropdown">
+        <a href="en/contact.html" data-lang="en">English</a>
+        <a href="contact.html" data-lang="zh" class="active">中文</a>
+        <a href="de/contact.html" data-lang="de">Deutsch</a>
+        <a href="ja/contact.html" data-lang="ja">日本語</a>
+        <a href="es/contact.html" data-lang="es">Español</a>
+        <a href="ko/contact.html" data-lang="ko">한국어</a>
+        <a href="fr/contact.html" data-lang="fr">Français</a>
+        <a href="pt/contact.html" data-lang="pt">Português</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- 页面标题 -->
+<section class="page-hero">
+  <h1 class="headline-lg fade-in">联系我们</h1>
+  <p class="body-lg page-hero-subtitle fade-in stagger-1">
+    有问题或建议？我们很乐意听到你的声音
+  </p>
+</section>
+
+<!-- 联系内容 -->
+<div class="contact-content">
+  <div class="contact-inner">
+    <div class="card contact-card fade-in">
+      <div class="contact-icon">✉</div>
+      <div class="contact-title">邮件联系</div>
+      <div class="contact-desc">
+        如果你在使用分屏助手时遇到问题，或者有任何功能建议和反馈，欢迎通过邮件联系我们。我们会尽快回复。
+      </div>
+      <a href="mailto:helpuser126@gmail.com" class="contact-email">
+        helpuser126@gmail.com
+      </a>
+      <div class="contact-note">
+        通常我们会在 1-2 个工作日内回复你的邮件。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Workspace Container. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="guide.html">操作方法</a></li>
+      <li><a href="privacy.html">隐私政策</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
